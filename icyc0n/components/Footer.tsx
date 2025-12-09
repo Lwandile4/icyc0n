@@ -1,5 +1,4 @@
 
-import React from 'react';
 import { Logo } from './Logo';
 import { Twitter, Instagram, Linkedin, Globe, Mail, Phone, MapPin } from 'lucide-react';
 import { Link } from 'react-router-dom';
@@ -117,8 +116,7 @@ const Footer: React.FC = () => {
             <span 
               className="text-[10rem] md:text-[14rem] font-bold text-transparent font-sans"
               style={{
-                WebkitTextStroke: '2px #4092ef',
-                textStroke: '2px #4092ef'
+                WebkitTextStroke: '2px #4092ef'
               }}
             >
               ICYCON
