@@ -12,7 +12,7 @@ const About: React.FC = () => {
           Icycon was born from a simple realization, the digital landscape isn't just changing, it's being completely rewritten by AI. To navigate this new world, we built a different kind of agency. We united elite data scientists, visionary creatives, and relentless growth experts into one team with a shared mission. To build brands that do not just speak to an audience, but fluently converse with the new logic of digital success.
         </p>
         
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
           {[
             { label: "Languages Covered", value: "20+" },
             { label: "Countries", value: "130+" },
