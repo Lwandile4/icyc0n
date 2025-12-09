@@ -34,21 +34,33 @@ const Home: React.FC = () => {
       <Suspense fallback={<HeroSkeleton />}>
         <Hero />
       </Suspense>
+
+      {/* Carousel skeleton matches ~600px height and carousel structure */}
       <Suspense fallback={<CarouselSkeleton />}>
         <CoreServicesCarousel />
       </Suspense>
+
+      {/* Section skeletons match grid layouts (6 cards for TargetMarkets) */}
       <Suspense fallback={<SectionSkeleton cards={6} />}>
         <TargetMarkets />
       </Suspense>
+
+      {/* WhyChooseUs section with 3 card layout */}
       <Suspense fallback={<SectionSkeleton cards={3} />}>
         <WhyChooseUs />
       </Suspense>
+
+      {/* About section with 3 stat cards */}
       <Suspense fallback={<SectionSkeleton cards={3} />}>
         <About />
       </Suspense>
+
+      {/* Pricing section with pricing card grid */}
       <Suspense fallback={<SectionSkeleton cards={3} />}>
         <HomePricing />
       </Suspense>
+
+      {/* Compact skeleton for simple CTA section */}
       <Suspense fallback={<CompactSkeleton />}>
         <CTA />
       </Suspense>

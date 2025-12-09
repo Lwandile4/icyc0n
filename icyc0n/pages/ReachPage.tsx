@@ -63,7 +63,7 @@ const ReachPage: React.FC = () => {
         <div className="relative z-10 text-center px-4">
             <AnimatedText 
               text="Reach"
-              className="text-4xl sm:text-5xl md:text-8xl font-sans text-center text-white tracking-tight drop-shadow-lg"
+              className="text-4xl sm:text-5xl md:text-8xl font-sans text-center text-white tracking-tight drop-shadow-lg font-bold"
               highlightedWords={{ 'Reach': 'bg-gradient-to-r from-sky-400 to-sky-600' }}
             />
             <motion.p 
@@ -72,7 +72,8 @@ const ReachPage: React.FC = () => {
                 transition={{ duration: 0.8, delay: 0.8 }}
                 className="mt-6 text-xl text-white/90 max-w-lg mx-auto leading-relaxed drop-shadow-md"
             >
-                Connect with customers wherever they are—inboxes, directories, or marketplaces.
+                 Expand your footprint beyond your website. We connect you with customers wherever they are. Whether its inboxes, directories, or marketplaces.
+              
             </motion.p>
         </div>
       </div>

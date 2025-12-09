@@ -37,8 +37,8 @@ const plans = [
   },
   {
     name: "Enterprise",
-    price: "$Contact Us",
-    period: "/mo",
+    price: "Custom Pricing",
+    period: "",
     description: "Best for large companies and teams requiring high security",
     color: "#818cf8", // Indigo-400
     features: [
@@ -47,7 +47,7 @@ const plans = [
       "API Access",
       "Integration with 3rd-Party"
     ],
-    cta: "Sign Up with Enterprise"
+    cta: "Contact Us"
   }
 ];
 
@@ -75,98 +75,98 @@ const faqs = [
 ];
 
 const CurveSelector = ({ activeIndex, onChange }: { activeIndex: number, onChange: (index: number) => void }) => {
-  return (
-    <div className="relative w-full max-w-lg mx-auto h-40 mb-8 select-none">
-      <svg className="w-full h-full drop-shadow-xl" viewBox="0 0 600 160" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-            <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
-                <feGaussianBlur stdDeviation="3" result="blur" />
-                <feComposite in="SourceGraphic" in2="blur" operator="over" />
-            </filter>
-        </defs>
-
-        {/* Base Curve Path */}
-        <path 
-          d="M 60 50 Q 300 160 540 50" 
-          className="stroke-gray-200 dark:stroke-white/10 stroke-[10px] fill-none"
-          strokeLinecap="round"
-        />
-        
-        {/* Active Path Progress */}
-        <motion.path 
-            d="M 60 50 Q 300 160 540 50"
-            className="stroke-[10px] fill-none"
-            stroke={plans[activeIndex].color}
+    return (
+      <div className="relative w-full max-w-lg mx-auto h-40 mb-8 select-none">
+        <svg className="w-full h-full drop-shadow-xl" viewBox="0 0 600 160" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+              <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+                  <feGaussianBlur stdDeviation="3" result="blur" />
+                  <feComposite in="SourceGraphic" in2="blur" operator="over" />
+              </filter>
+          </defs>
+  
+          {/* Base Curve Path */}
+          <path 
+            d="M 60 50 Q 300 160 540 50" 
+            className="stroke-gray-200 dark:stroke-white/10 stroke-[10px] fill-none"
             strokeLinecap="round"
-            initial={{ pathLength: 0 }}
-            animate={{ 
-                pathLength: activeIndex === 0 ? 0.001 : activeIndex === 1 ? 0.5 : 1,
-                stroke: plans[activeIndex].color
-            }}
-            transition={{ duration: 0.6, ease: "circOut" }}
-            style={{ filter: "url(#glow)" }}
-        />
-
-        {/* Nodes */}
-        {plans.map((plan, index) => {
-            const positions = [
-                { x: 60, y: 50 },
-                { x: 300, y: 105 }, 
-                { x: 540, y: 50 }
-            ];
-            const pos = positions[index];
-            const isActive = activeIndex === index;
-            const isPassed = activeIndex >= index;
-
-            return (
-                <g key={index} onClick={() => onChange(index)} className="cursor-pointer group">
-                    {/* Larger Hit Area */}
-                    <circle cx={pos.x} cy={pos.y} r={40} className="fill-transparent" />
-
-                    {/* Outer Circle */}
-                    <motion.circle 
-                        cx={pos.x} 
-                        cy={pos.y} 
-                        className="stroke-[4px] transition-colors duration-300"
-                        style={{ 
-                            fill: isActive ? plan.color : '#ffffff', 
-                            stroke: isPassed ? plan.color : '#e5e7eb'
-                        }}
-                        initial={{ r: 14 }}
-                        animate={{ r: isActive ? 22 : 14 }}
-                        transition={{ duration: 0.3 }}
-                    />
-                    
-                    {/* Inner Dot */}
-                    <motion.circle 
-                        cx={pos.x} 
-                        cy={pos.y} 
-                        className="fill-white"
-                        initial={{ r: 0 }}
-                        animate={{ r: isActive ? 12 : 0 }}
-                        transition={{ duration: 0.3 }}
-                    />
-
-                    {/* Label */}
-                    <text 
-                        x={pos.x} 
-                        y={pos.y - 40} 
-                        textAnchor="middle" 
-                        className={`
-                            text-sm font-extrabold tracking-widest uppercase font-sans
-                            transition-all duration-300
-                            ${isActive ? 'fill-gray-900 dark:fill-white' : 'fill-gray-400 dark:fill-gray-500'}
-                        `}
-                    >
-                        {plan.name}
-                    </text>
-                </g>
-            );
-        })}
-      </svg>
-    </div>
-  );
-};
+          />
+          
+          {/* Active Path Progress */}
+          <motion.path 
+              d="M 60 50 Q 300 160 540 50"
+              className="stroke-[10px] fill-none"
+              stroke={plans[activeIndex].color}
+              strokeLinecap="round"
+              initial={{ pathLength: 0 }}
+              animate={{ 
+                  pathLength: activeIndex === 0 ? 0.001 : activeIndex === 1 ? 0.5 : 1,
+                  stroke: plans[activeIndex].color
+              }}
+              transition={{ duration: 0.6, ease: "circOut" }}
+              style={{ filter: "url(#glow)" }}
+          />
+  
+          {/* Nodes */}
+          {plans.map((plan, index) => {
+              const positions = [
+                  { x: 60, y: 50 },
+                  { x: 300, y: 105 }, 
+                  { x: 540, y: 50 }
+              ];
+              const pos = positions[index];
+              const isActive = activeIndex === index;
+              const isPassed = activeIndex >= index;
+  
+              return (
+                  <g key={index} onClick={() => onChange(index)} className="cursor-pointer group">
+                      {/* Larger Hit Area */}
+                      <circle cx={pos.x} cy={pos.y} r={40} className="fill-transparent" />
+  
+                      {/* Outer Circle */}
+                      <motion.circle 
+                          cx={pos.x} 
+                          cy={pos.y} 
+                          className="stroke-[4px] transition-colors duration-300"
+                          style={{ 
+                              fill: isActive ? plan.color : '#ffffff', 
+                              stroke: isPassed ? plan.color : '#e5e7eb'
+                          }}
+                          initial={{ r: 14 }}
+                          animate={{ r: isActive ? 22 : 14 }}
+                          transition={{ duration: 0.3 }}
+                      />
+                      
+                      {/* Inner Dot */}
+                      <motion.circle 
+                          cx={pos.x} 
+                          cy={pos.y} 
+                          className="fill-white"
+                          initial={{ r: 0 }}
+                          animate={{ r: isActive ? 12 : 0 }}
+                          transition={{ duration: 0.3 }}
+                      />
+  
+                      {/* Label */}
+                      <text 
+                          x={pos.x} 
+                          y={pos.y - 40} 
+                          textAnchor="middle" 
+                          className={`
+                              text-sm font-extrabold tracking-widest uppercase font-sans
+                              transition-all duration-300
+                              ${isActive ? 'fill-gray-900 dark:fill-white' : 'fill-gray-400 dark:fill-gray-500'}
+                          `}
+                      >
+                          {plan.name}
+                      </text>
+                  </g>
+              );
+          })}
+        </svg>
+      </div>
+    );
+  };
 
 const PricingPage: React.FC = () => {
   const [openFaq, setOpenFaq] = React.useState<number | null>(null);
@@ -174,8 +174,11 @@ const PricingPage: React.FC = () => {
 
   return (
     <div className="bg-slate-50 dark:bg-icy-dark min-h-screen transition-colors duration-300">
-      {/* HERO SECTION WITH EXTRA SPACING BELOW AND FULL WIDTH */}
-      <LampContainer className="pt-40 pb-24 md:pb-32 w-full max-w-none px-0" glowColor={plans[activePlan].color}>
+      {/* 
+          LAYOUT FIX: 
+          1. pt-64 (Increased) pushes the lamp down significantly to clear navbar.
+      */}
+      <LampContainer className="pt-60" glowColor={plans[activePlan].color}>
         <motion.h1
           {...({
               initial: { opacity: 0.5, y: 100 },
@@ -186,7 +189,7 @@ const PricingPage: React.FC = () => {
                 ease: "easeInOut",
               }
           } as any)}
-          className="mt-8 bg-gradient-to-br from-slate-900 to-slate-500 dark:from-white dark:to-slate-400 py-4 bg-clip-text text-center text-4xl font-medium tracking-tight text-transparent md:text-7xl"
+          className="mt-2 bg-gradient-to-br from-slate-900 to-slate-500 dark:from-white dark:to-slate-400 py-6 bg-clip-text text-center text-4xl font-medium tracking-tight text-transparent md:text-7xl font-bold"
         >
           Simple and Affordable <br /> Pricing Plans
         </motion.h1>
@@ -196,14 +199,17 @@ const PricingPage: React.FC = () => {
                whileInView: { opacity: 1, y: 0 },
                transition: { delay: 0.5, duration: 0.8 }
            } as any)}
-           className="text-slate-600 dark:text-slate-400 mt-4 max-w-lg text-center mx-auto"
+           className="text-slate-600 dark:text-slate-400 mt-12 max-w-lg text-center mx-auto"
         >
             Start tracking and improving your digital growth management today.
         </motion.p>
       </LampContainer>
       
-      {/* MAIN CONTENT SECTION - NO OVERLAP, MORE SPACE FROM HERO */}
-      <div className="relative z-10 pb-24 px-4">
+      {/* 
+          LAYOUT FIX:
+          2. -mt-20 reduces the overlap, keeping the cards visible but connected.
+      */}
+      <div className="relative z-10 -mt-10 pb-24 px-2">
          <div className="w-[90%] lg:w-[90%] mx-auto">
             
             {/* Curve Selector */}
@@ -218,7 +224,7 @@ const PricingPage: React.FC = () => {
             </motion.div>
 
             {/* Cards Grid */}
-            <div className="grid md:grid-cols-3 gap-8 items-center">
+            <div className="grid md:grid-cols-3 gap-10 items-center">
                 {plans.map((plan, index) => {
                     const isActive = activePlan === index;
                     return (

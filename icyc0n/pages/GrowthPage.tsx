@@ -93,7 +93,7 @@ const GrowthPage: React.FC = () => {
         <div className="relative z-10 text-center px-4">
             <AnimatedText 
               text="Accelerate Growth"
-              className="text-4xl sm:text-5xl md:text-8xl font-sans text-center text-white tracking-tight drop-shadow-lg"
+              className="text-4xl sm:text-5xl md:text-8xl font-sans text-center text-white tracking-tight drop-shadow-lg font-bold"
               highlightedWords={{
                 'Growth': 'bg-gradient-to-r from-cyan-400 to-blue-600'
               }}

@@ -108,7 +108,7 @@ const OptimisationPage: React.FC = () => {
       >
         <AnimatedText 
           text="Total Optimisation"
-          className="text-4xl sm:text-5xl md:text-8xl font-sans text-center text-white tracking-tight drop-shadow-lg"
+          className="text-4xl sm:text-5xl md:text-8xl font-sans text-center text-white tracking-tight drop-shadow-lg font-bold"
           highlightedWords={{
             'Optimisation': 'bg-gradient-to-r from-cyan-400 to-blue-600'
           }}
