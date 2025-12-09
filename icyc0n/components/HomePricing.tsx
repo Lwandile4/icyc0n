@@ -57,7 +57,7 @@ const CurveSelector = ({ activeIndex, onChange }: { activeIndex: number, onChang
     <div className="relative w-full max-w-lg mx-auto h-40 mb-8 select-none">
       <svg className="w-full h-full drop-shadow-xl" viewBox="0 0 600 160" fill="none" xmlns="http://www.w3.org/2000/svg">
         <defs>
-            <filter id="glow-home" x="-20%" y="-20%" width="140%" height="140%">
+            <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
                 <feGaussianBlur stdDeviation="3" result="blur" />
                 <feComposite in="SourceGraphic" in2="blur" operator="over" />
             </filter>
@@ -76,20 +76,17 @@ const CurveSelector = ({ activeIndex, onChange }: { activeIndex: number, onChang
             className="stroke-[10px] fill-none"
             stroke={plans[activeIndex].color}
             strokeLinecap="round"
-            {...({
-                initial: { pathLength: 0 },
-                animate: { 
-                    pathLength: activeIndex === 0 ? 0.001 : activeIndex === 1 ? 0.5 : 1,
-                    stroke: plans[activeIndex].color
-                },
-                transition: { duration: 0.6, ease: "circOut" }
-            } as any)}
-            style={{ filter: "url(#glow-home)" }}
+            initial={{ pathLength: 0 }}
+            animate={{ 
+                pathLength: activeIndex === 0 ? 0.001 : activeIndex === 1 ? 0.5 : 1,
+                stroke: plans[activeIndex].color
+            }}
+            transition={{ duration: 0.6, ease: "circOut" }}
+            style={{ filter: "url(#glow)" }}
         />
 
         {/* Nodes */}
         {plans.map((plan, index) => {
-            // Curve: P0(60,50), Control(300,160), P2(540,50)
             const positions = [
                 { x: 60, y: 50 },
                 { x: 300, y: 105 }, 
@@ -108,25 +105,24 @@ const CurveSelector = ({ activeIndex, onChange }: { activeIndex: number, onChang
                     <motion.circle 
                         cx={pos.x} 
                         cy={pos.y} 
-                        r={isActive ? 22 : 14} 
                         className="stroke-[4px] transition-colors duration-300"
                         style={{ 
                             fill: isActive ? plan.color : '#ffffff', 
                             stroke: isPassed ? plan.color : '#e5e7eb'
                         }}
-                        {...({ animate: { r: isActive ? 22 : 14 } } as any)}
+                        initial={{ r: 14 }}
+                        animate={{ r: isActive ? 22 : 14 }}
+                        transition={{ duration: 0.3 }}
                     />
                     
                     {/* Inner Dot */}
                     <motion.circle 
                         cx={pos.x} 
                         cy={pos.y} 
-                        r={isActive ? 12 : 0} 
                         className="fill-white"
-                        {...({ 
-                            animate: { r: isActive ? 12 : 0 },
-                            initial: false 
-                        } as any)}
+                        initial={{ r: 0 }}
+                        animate={{ r: isActive ? 12 : 0 }}
+                        transition={{ duration: 0.3 }}
                     />
 
                     {/* Label */}
