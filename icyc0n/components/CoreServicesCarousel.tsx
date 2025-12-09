@@ -41,11 +41,11 @@ const carouselItems = [
 
 const CoreServicesCarousel: React.FC = () => {
   return (
-    <section id="services" className="py-24 px-4 bg-white dark:bg-black/20">
+    <section id="services" className="py-24 px-4 bg-black/20">
       <div className="w-[90%] lg:w-[90%] mx-auto">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold mb-6 text-gray-900 dark:text-white">Our Core Services</h2>
-          <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+          <h2 className="text-4xl md:text-5xl font-bold mb-6 text-white">Our Core Services</h2>
+          <p className="text-gray-400 max-w-2xl mx-auto">
             A holistic suite of digital tools designed for the modern business.
             Select a pillar to explore capabilities.
           </p>
@@ -113,7 +113,7 @@ const CoreServicesCarousel: React.FC = () => {
               ))}
             </SliderContent>
 
-            <SliderBtnGroup className="absolute bottom-6 left-1/2 -translate-x-1/2 w-[95%] md:w-[80%] h-auto dark:bg-black/80 bg-white/90 backdrop-blur-2xl border border-white/20 overflow-hidden grid grid-cols-3 rounded-full shadow-2xl p-1 gap-1">
+            <SliderBtnGroup className="absolute bottom-6 left-1/2 -translate-x-1/2 w-[95%] md:w-[80%] h-auto bg-black/80 backdrop-blur-2xl border border-white/20 overflow-hidden grid grid-cols-3 rounded-full shadow-2xl p-1 gap-1">
               {carouselItems.map((item, index) => (
                 <SliderBtn
                   key={index}
@@ -121,7 +121,7 @@ const CoreServicesCarousel: React.FC = () => {
                   className="text-center cursor-pointer py-3 md:py-4 rounded-full hover:bg-black/5 dark:hover:bg-white/10 transition-colors flex flex-col items-center justify-center gap-1"
                   progressBarClass="bg-icy-main h-2 absolute inset-0 z-[-1] opacity-80 rounded-full"
                 >
-                  <h2 className="text-sm md:text-base font-bold dark:text-white text-gray-900">
+                  <h2 className="text-sm md:text-base font-bold text-white">
                     {item.title}
                   </h2>
                 </SliderBtn>

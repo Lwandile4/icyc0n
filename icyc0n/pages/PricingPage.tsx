@@ -174,11 +174,8 @@ const PricingPage: React.FC = () => {
 
   return (
     <div className="bg-slate-50 dark:bg-icy-dark min-h-screen transition-colors duration-300">
-      {/* 
-          LAYOUT FIX: 
-          1. pt-64 (Increased) pushes the lamp down significantly to clear navbar.
-      */}
-      <LampContainer className="pt-64" glowColor={plans[activePlan].color}>
+      {/* HERO SECTION WITH EXTRA SPACING BELOW AND FULL WIDTH */}
+      <LampContainer className="pt-40 pb-24 md:pb-32 w-full max-w-none px-0" glowColor={plans[activePlan].color}>
         <motion.h1
           {...({
               initial: { opacity: 0.5, y: 100 },
@@ -205,11 +202,8 @@ const PricingPage: React.FC = () => {
         </motion.p>
       </LampContainer>
       
-      {/* 
-          LAYOUT FIX:
-          2. -mt-20 reduces the overlap, keeping the cards visible but connected.
-      */}
-      <div className="relative z-10 -mt-20 pb-24 px-4">
+      {/* MAIN CONTENT SECTION - NO OVERLAP, MORE SPACE FROM HERO */}
+      <div className="relative z-10 pb-24 px-4">
          <div className="w-[90%] lg:w-[90%] mx-auto">
             
             {/* Curve Selector */}

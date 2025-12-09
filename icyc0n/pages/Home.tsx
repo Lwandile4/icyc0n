@@ -29,46 +29,30 @@ const CTA = React.lazy(() => import('../components/CTA'));
 
 const Home: React.FC = () => {
   return (
-    <>
-      {/* PERFORMANCE: Section-specific skeleton loaders prevent layout shift
-          Each skeleton matches the exact dimensions and structure of its component */}
-      
-      {/* Hero loads first (above fold), but in separate chunk from main bundle */}
-      {/* HeroSkeleton matches full-screen Hero layout for seamless transition */}
+    <div className="bg-icy-dark min-h-screen">
+      {/* PERFORMANCE: Section-specific skeleton loaders prevent layout shift */}
       <Suspense fallback={<HeroSkeleton />}>
         <Hero />
       </Suspense>
-
-      {/* Carousel skeleton matches ~600px height and carousel structure */}
       <Suspense fallback={<CarouselSkeleton />}>
         <CoreServicesCarousel />
       </Suspense>
-
-      {/* Section skeletons match grid layouts (6 cards for TargetMarkets) */}
       <Suspense fallback={<SectionSkeleton cards={6} />}>
         <TargetMarkets />
       </Suspense>
-
-      {/* WhyChooseUs section with 3 card layout */}
       <Suspense fallback={<SectionSkeleton cards={3} />}>
         <WhyChooseUs />
       </Suspense>
-
-      {/* About section with 3 stat cards */}
       <Suspense fallback={<SectionSkeleton cards={3} />}>
         <About />
       </Suspense>
-
-      {/* Pricing section with pricing card grid */}
       <Suspense fallback={<SectionSkeleton cards={3} />}>
         <HomePricing />
       </Suspense>
-
-      {/* Compact skeleton for simple CTA section */}
       <Suspense fallback={<CompactSkeleton />}>
         <CTA />
       </Suspense>
-    </>
+    </div>
   );
 };
 

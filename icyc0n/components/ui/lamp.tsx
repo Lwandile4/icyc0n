@@ -1,4 +1,3 @@
-
 "use client";
 import React from "react";
 import { motion } from "framer-motion";
@@ -42,10 +41,11 @@ export const LampContainer = ({
       )}
     >
       <div className="relative flex w-full flex-1 scale-y-125 items-center justify-center isolate z-0 ">
+        {/* SINGLE UNIFIED GRADIENT (instead of two separate ones) */}
         <motion.div
           {...({
               initial: { opacity: 0.5, width: "15rem" },
-              whileInView: { opacity: 1, width: "30rem" },
+              whileInView: { opacity: 1, width: "60rem" },
               transition: {
                 delay: 0.3,
                 duration: 0.8,
@@ -53,36 +53,13 @@ export const LampContainer = ({
               }
           } as any)}
           style={{
-            backgroundImage: `conic-gradient(var(--conic-position), var(--tw-gradient-stops))`,
-            "--tw-gradient-from": glowColor,
-            "--tw-gradient-to": "transparent", 
-            "--tw-gradient-stops": `var(--tw-gradient-from), var(--tw-gradient-to)`,
+            backgroundImage: `conic-gradient(from 0deg at 50% 50%, ${glowColor} 0%, ${glowColor}80 50%, ${glowColor} 100%)`,
           } as React.CSSProperties}
-          className="absolute inset-auto right-1/2 h-56 overflow-visible w-[30rem] bg-gradient-conic from-[var(--tw-gradient-from)] via-transparent to-transparent text-white [--conic-position:from_70deg_at_center_top]"
+          className="absolute inset-auto h-56 overflow-visible w-[60rem] bg-gradient-conic text-white"
         >
-          <div className="absolute  w-[100%] left-0 bg-slate-50 dark:bg-icy-dark h-40 bottom-0 z-20 [mask-image:linear-gradient(to_top,white,transparent)] transition-colors duration-300" />
-          <div className="absolute  w-40 h-[100%] left-0 bg-slate-50 dark:bg-icy-dark  bottom-0 z-20 [mask-image:linear-gradient(to_right,white,transparent)] transition-colors duration-300" />
-        </motion.div>
-        <motion.div
-          {...({
-              initial: { opacity: 0.5, width: "15rem" },
-              whileInView: { opacity: 1, width: "30rem" },
-              transition: {
-                delay: 0.3,
-                duration: 0.8,
-                ease: "easeInOut",
-              }
-          } as any)}
-          style={{
-            backgroundImage: `conic-gradient(var(--conic-position), var(--tw-gradient-stops))`,
-             "--tw-gradient-to": glowColor,
-             "--tw-gradient-from": "transparent",
-             "--tw-gradient-stops": `var(--tw-gradient-from), via-transparent, var(--tw-gradient-to)`,
-          } as React.CSSProperties}
-          className="absolute inset-auto left-1/2 h-56 w-[30rem] bg-gradient-conic from-transparent via-transparent to-[var(--tw-gradient-to)] text-white [--conic-position:from_290deg_at_center_top]"
-        >
-          <div className="absolute  w-40 h-[100%] right-0 bg-slate-50 dark:bg-icy-dark  bottom-0 z-20 [mask-image:linear-gradient(to_left,white,transparent)] transition-colors duration-300" />
-          <div className="absolute  w-[100%] right-0 bg-slate-50 dark:bg-icy-dark h-40 bottom-0 z-20 [mask-image:linear-gradient(to_top,white,transparent)] transition-colors duration-300" />
+          <div className="absolute w-[100%] left-0 bg-slate-50 dark:bg-icy-dark h-40 bottom-0 z-20 [mask-image:linear-gradient(to_top,white,transparent)] transition-colors duration-300" />
+          <div className="absolute w-40 h-[100%] left-0 bg-slate-50 dark:bg-icy-dark bottom-0 z-20 [mask-image:linear-gradient(to_right,white,transparent)] transition-colors duration-300" />
+          <div className="absolute w-40 h-[100%] right-0 bg-slate-50 dark:bg-icy-dark bottom-0 z-20 [mask-image:linear-gradient(to_left,white,transparent)] transition-colors duration-300" />
         </motion.div>
         
         {/* Central Blur */}
@@ -91,13 +68,13 @@ export const LampContainer = ({
         ></div>
         <div className="absolute top-1/2 z-50 h-48 w-full bg-transparent opacity-10 backdrop-blur-md"></div>
         
-        {/* Glow Orb */}
+        {/* Glow Orb - Single color */}
         <div 
             className="absolute inset-auto z-50 h-36 w-[28rem] -translate-y-1/2 rounded-full opacity-50 blur-3xl transition-colors duration-500"
             style={{ backgroundColor: glowColor }}
         ></div>
         
-        {/* Small bright orb */}
+        {/* Small bright orb - Single color */}
         <motion.div
           {...({
               initial: { width: "8rem" },
@@ -112,7 +89,7 @@ export const LampContainer = ({
           style={{ backgroundColor: glowColor }}
         ></motion.div>
         
-        {/* Horizontal Line */}
+        {/* Horizontal Line - Single color */}
         <motion.div
           {...({
               initial: { width: "15rem" },

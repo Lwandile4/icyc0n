@@ -2,13 +2,13 @@ import React from 'react';
 
 const About: React.FC = () => {
   return (
-    <section id="about" className="py-24 px-4 bg-white dark:bg-icy-dark relative overflow-hidden">
+    <section id="about" className="py-24 px-4 bg-icy-dark relative overflow-hidden">
       <div className="w-[90%] lg:w-[90%] mx-auto text-center relative z-10">
         <h2 className="text-sm font-bold tracking-widest text-icy-main uppercase mb-4">About Us</h2>
         <h3 className="text-3xl md:text-5xl font-bold mb-8">
           Architects of the <span className="text-icy-secondary">Digital Future</span>
         </h3>
-        <p className="max-w-4xl mx-auto text-lg md:text-xl text-gray-600 dark:text-gray-300 leading-relaxed mb-12">
+        <p className="max-w-4xl mx-auto text-lg md:text-xl text-gray-300 leading-relaxed mb-12">
           Icycon was born from a simple realization, the digital landscape isn't just changing, it's being completely rewritten by AI. To navigate this new world, we built a different kind of agency. We united elite data scientists, visionary creatives, and relentless growth experts into one team with a shared mission. To build brands that do not just speak to an audience, but fluently converse with the new logic of digital success.
         </p>
         
@@ -16,9 +16,10 @@ const About: React.FC = () => {
           {[
             { label: "Languages Covered", value: "20+" },
             { label: "Countries", value: "130+" },
-            { label: "LLM's Utilised", value: "5+" },
+            { label: "LLM's Utilised", value: "5+"},
+            {label: "Industries Served", value: "40+"},
           ].map((stat, i) => (
-            <div key={i} className="p-4 rounded-xl bg-gray-50 dark:bg-white/5 border border-gray-100 dark:border-white/5">
+            <div key={i} className="p-4 rounded-xl bg-white/5 border border-white/5">
               <div className="text-3xl font-bold text-icy-main mb-1">{stat.value}</div>
               <div className="text-sm text-gray-500">{stat.label}</div>
             </div>
@@ -28,7 +29,7 @@ const About: React.FC = () => {
       
       {/* Decorative large text */}
       <div className="absolute -bottom-20 left-0 right-0 text-center pointer-events-none select-none overflow-hidden">
-        <span className="text-[15rem] md:text-[20rem] font-bold text-gray-100 dark:text-white/[0.02] leading-none">
+        <span className="text-[15rem] md:text-[20rem] font-bold text-white/[0.02] leading-none">
           ICYCON
         </span>
       </div>
