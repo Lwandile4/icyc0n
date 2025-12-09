@@ -117,7 +117,7 @@ const OptimisationPage: React.FC = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.8, duration: 0.8 }}
-            className="mt-6 text-xl text-white/90 max-w-lg mx-auto leading-relaxed drop-shadow-md"
+            className="mt-6 text-xl text-white/90 max-w-lg mx-auto leading-relaxed drop-shadow-md text-center"
         >
             Dominate search. Be the answer.
         </motion.p>

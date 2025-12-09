@@ -104,7 +104,7 @@ const GrowthPage: React.FC = () => {
                 transition={{ delay: 0.8, duration: 0.8 }}
                 className="mt-6 text-xl text-white/90 max-w-lg mx-auto leading-relaxed drop-shadow-md"
             >
-                Scale faster with viral loops and global infrastructure.
+                Unlock your brand's potential with our specialized growth services. <br/> Icycon combines social amplification with multilingual strategies to break barriers.
             </motion.p>
         </div>
       </div>
