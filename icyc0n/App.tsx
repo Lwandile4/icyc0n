@@ -9,6 +9,7 @@ import ReachPage from './pages/ReachPage';
 import GrowthPage from './pages/GrowthPage';
 import Dashboard from './pages/Dashboard';
 import Footer from './components/Footer';
+import LoadingScreen from './components/ui/LoadingScreen';
 
 // Component to scroll to top on route change
 function ScrollToTop() {
@@ -20,12 +21,29 @@ function ScrollToTop() {
 }
 
 export default function App() {
-  // Hardcoded dark mode behavior
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+  // PERFORMANCE: Loading state - wait for fonts and critical resources before showing content
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     // Enforce dark mode class
     document.documentElement.classList.add('dark');
+
+    // PERFORMANCE: Wait for fonts and initial render before showing content
+    // Prevents FOUT (Flash of Unstyled Text) and ensures styles are ready
+    const initApp = async () => {
+      // Wait for fonts to load (critical for proper rendering)
+      if ('fonts' in document) {
+        await document.fonts.ready;
+      }
+      
+      // Small delay to ensure styles are applied
+      await new Promise(resolve => setTimeout(resolve, 100));
+      
+      setIsLoading(false);
+    };
+
+    initApp();
   }, []);
 
   const handleLogin = () => {
@@ -35,6 +53,11 @@ export default function App() {
   const handleLogout = () => {
     setIsAuthenticated(false);
   };
+
+  // PERFORMANCE: Show loading screen until critical resources (fonts, styles) are ready
+  if (isLoading) {
+    return <LoadingScreen />;
+  }
 
   return (
     <Router>

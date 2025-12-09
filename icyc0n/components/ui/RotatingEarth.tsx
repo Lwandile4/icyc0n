@@ -161,7 +161,7 @@ export default function RotatingEarth({ width = 600, height = 600, className = "
       const bounds = (d3 as any).geoBounds(feature)
       const [[minLng, minLat], [maxLng, maxLat]] = bounds
       // OPTIMIZATION: Increased dotSpacing default creates fewer dots, faster load
-      const stepSize = dotSpacing * 0.08
+      const stepSize = dotSpacing * 0.17
       if (stepSize <= 0) return dots;
       for (let lng = minLng; lng <= maxLng; lng += stepSize) {
         for (let lat = minLat; lat <= maxLat; lat += stepSize) {
@@ -222,7 +222,9 @@ export default function RotatingEarth({ width = 600, height = 600, className = "
             projected[1] <= containerHeight
           ) {
             context.beginPath()
-            context.arc(projected[0], projected[1], 1.5 * scaleFactor, 0, 2 * Math.PI)
+            // Dot size - increase 2.0 to make dots larger (e.g., 2.5, 3.0, 4.0)
+            // scaleFactor adapts size based on zoom level
+            context.arc(projected[0], projected[1], 3.0 * scaleFactor, 0, 2 * Math.PI)
             context.fill()
           }
         })

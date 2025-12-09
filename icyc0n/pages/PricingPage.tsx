@@ -28,7 +28,7 @@ const plans = [
     color: "#4092ef", // Icy Main
     features: [
       "Everything in Starter",
-      "Riona AI Agent Access",
+      "Icey Agent Access (Our AI Agent)",
       "AEO & LLM Optimization",
       "Unlimited Blog Engine",
       "Multilingual Support"
@@ -37,12 +37,11 @@ const plans = [
   },
   {
     name: "Enterprise",
-    price: "$2,999",
+    price: "$Contact Us",
     period: "/mo",
     description: "Best for large companies and teams requiring high security",
     color: "#818cf8", // Indigo-400
     features: [
-      "Custom Riona Training",
       "Dedicated Account Manager",
       "White-label Reports",
       "API Access",

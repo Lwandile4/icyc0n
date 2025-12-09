@@ -1,6 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
+// PERFORMANCE OPTIMIZATION: Import Tailwind CSS (bundled instead of CDN)
+import './index.css';
 
 const rootElement = document.getElementById('root');
 if (!rootElement) {

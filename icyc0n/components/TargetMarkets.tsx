@@ -12,7 +12,7 @@ const markets = [
   },
   {
     icon: <ShoppingBag className="w-6 h-6" />,
-    title: "D2C / eCommerce",
+    title: "eCommerce",
     subtitle: "Retail Brands",
     features: ["Blog + UGC Content", "LLM 'Best of' Ranking", "Seasonal Trend Sprints"]
   },
@@ -30,7 +30,7 @@ const markets = [
   },
   {
     icon: <Smartphone className="w-6 h-6" />,
-    title: "Mobile Publishers",
+    title: "Applications",
     subtitle: "Apps & Games",
     features: ["App Store Optimzation", "Review Operations", "In-App Prompting", "Apple + Google Play Tactics"]
   },
@@ -62,10 +62,14 @@ const TargetMarkets: React.FC = () => {
               A powerful suite to help you master the digital landscape. Get everything you need to attract your audience, optimize every interaction, and expand your reach globally.
             </p>
             <div className="relative rounded-2xl overflow-hidden shadow-2xl border border-white/10 group">
+              {/* PERFORMANCE OPTIMIZATION: Fixed image ID for caching, added dimensions to prevent layout shift */}
               <img 
-                src="https://picsum.photos/800/600?grayscale" 
+                src="https://picsum.photos/seed/icycon/800/600?grayscale" 
                 alt="Growth Strategy" 
                 className="w-full h-auto grayscale mix-blend-multiply opacity-80 group-hover:scale-105 transition-transform duration-700"
+                width={800}
+                height={600}
+                loading="lazy"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-icy-dark to-transparent opacity-90"></div>
               <div className="absolute bottom-8 left-8 right-8">

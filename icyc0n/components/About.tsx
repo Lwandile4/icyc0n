@@ -14,9 +14,9 @@ const About: React.FC = () => {
         
         <div className="grid grid-cols-2 md:grid-cols-3 gap-8">
           {[
-            { label: "Languages Covered", value: "10+" },
-            { label: "Countries", value: "90+" },
-            { label: "Team Members", value: "30" },
+            { label: "Languages Covered", value: "20+" },
+            { label: "Countries", value: "130+" },
+            { label: "LLM's Utilised", value: "5+" },
           ].map((stat, i) => (
             <div key={i} className="p-4 rounded-xl bg-gray-50 dark:bg-white/5 border border-gray-100 dark:border-white/5">
               <div className="text-3xl font-bold text-icy-main mb-1">{stat.value}</div>
