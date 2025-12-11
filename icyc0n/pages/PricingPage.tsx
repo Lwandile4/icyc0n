@@ -178,7 +178,7 @@ const PricingPage: React.FC = () => {
           LAYOUT FIX: 
           1. pt-64 (Increased) pushes the lamp down significantly to clear navbar.
       */}
-      <LampContainer className="pt-64" glowColor={plans[activePlan].color}>
+      <LampContainer className="pt-60" glowColor={plans[activePlan].color}>
         <motion.h1
           {...({
               initial: { opacity: 0.5, y: 100 },
@@ -189,7 +189,7 @@ const PricingPage: React.FC = () => {
                 ease: "easeInOut",
               }
           } as any)}
-          className="mt-8 bg-gradient-to-br from-slate-900 to-slate-500 dark:from-white dark:to-slate-400 py-4 bg-clip-text text-center text-4xl font-medium tracking-tight text-transparent md:text-7xl"
+          className="mt-2 bg-gradient-to-br from-slate-900 to-slate-500 dark:from-white dark:to-slate-400 py-6 bg-clip-text text-center text-4xl font-medium tracking-tight text-transparent md:text-7xl font-bold"
         >
           Simple and Affordable <br /> Pricing Plans
         </motion.h1>
@@ -199,7 +199,7 @@ const PricingPage: React.FC = () => {
                whileInView: { opacity: 1, y: 0 },
                transition: { delay: 0.5, duration: 0.8 }
            } as any)}
-           className="text-slate-600 dark:text-slate-400 mt-4 max-w-lg text-center mx-auto"
+           className="text-slate-600 dark:text-slate-400 mt-12 max-w-lg text-center mx-auto"
         >
             Start tracking and improving your digital growth management today.
         </motion.p>
@@ -209,7 +209,7 @@ const PricingPage: React.FC = () => {
           LAYOUT FIX:
           2. -mt-20 reduces the overlap, keeping the cards visible but connected.
       */}
-      <div className="relative z-10 -mt-20 pb-24 px-4">
+      <div className="relative z-10 -mt-10 pb-24 px-2">
          <div className="w-[90%] lg:w-[90%] mx-auto">
             
             {/* Curve Selector */}
@@ -224,7 +224,7 @@ const PricingPage: React.FC = () => {
             </motion.div>
 
             {/* Cards Grid */}
-            <div className="grid md:grid-cols-3 gap-8 items-center">
+            <div className="grid md:grid-cols-3 gap-10 items-center">
                 {plans.map((plan, index) => {
                     const isActive = activePlan === index;
                     return (

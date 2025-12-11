@@ -11,11 +11,10 @@ interface NavbarProps {
 }
 
 const navLinks = [
-  { name: 'Home', href: '/' },
-  { name: 'Pricing', href: '/pricing' },
   { name: 'Optimisation', href: '/optimisation' },
   { name: 'Growth', href: '/growth' },
   { name: 'Reach', href: '/reach' },
+  { name: 'Pricing', href: '/pricing' },
 ];
 
 const Navbar: React.FC<NavbarProps> = ({ isAuthenticated, onLogout }) => {

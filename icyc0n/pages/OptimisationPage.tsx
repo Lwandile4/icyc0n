@@ -1,131 +1,251 @@
 
 import React from 'react';
-import { motion } from 'framer-motion';
-import { Search, Smartphone, Layers, FileText, Map, Brain, Network, ShieldCheck, Settings, Palette, FlaskConical, Activity, Sparkles } from 'lucide-react';
+import { MegaSectionCard } from '../components/MegaSectionCard';
 import { WavyBackground } from '../components/ui/wavy-background';
 import { AnimatedText } from '../components/ui/animated-text';
-import { TabbedMegaSections } from '../components/ui/tabbed-mega-sections';
+import { motion } from 'framer-motion';
+import { 
+  ScanSearch, 
+  Code2, 
+  Server, 
+  CheckCircle2, 
+  Bot, 
+  Mic, 
+  Database, 
+  Network, 
+  Smartphone, 
+  Download, 
+  Star, 
+  TrendingUp,
+  Search
+} from 'lucide-react';
 
-const technicalSeoData = {
-  title: "Technical SEO & Content Strategy Services",
-  subtitle: "How We Drive Qualified Traffic & Build Trust",
-  intro: "At Icycon, we engineer digital visibility. We don't just \"do SEO\". We build the technical foundation and create the strategic content that ensures your organization is found and trusted by the exact customers searching for your solutions. Here’s how our services translate into your growth.",
-  pillars: [
-    { icon: <Layers className="w-6 h-6" />, title: "Technical Foundation Audit & Optimization", do: "We ensure search engines can efficiently discover, crawl, and interpret every part of your website. This includes validating sitemaps, fixing site structure issues, and monitoring indexing health in real-time.", impact: "Eliminates invisible barriers that make your content unfindable. You gain a website that communicates clearly with Google, ensuring your investment in content and pages translates into actual search presence." },
-    { icon: <Search className="w-6 h-6" />, title: "Search Demand & Intent Mapping", do: "We analyze the market to build a comprehensive map of what your potential customers are actively searching for and why. We then align each search intent with the most effective page on your site.", impact: "Moves you from guessing to knowing. This strategy ensures every piece of content we recommend serves a clear business purpose by capturing qualified traffic at various stages of the buyer's journey." },
-    { icon: <FileText className="w-6 h-6" />, title: "Strategic Content Creation from Brief to Draft", do: "We turn intent maps into actionable content, creating detailed briefs for pillar guides, product comparisons, and FAQs, complete with strategic angles and outlines. We then draft the content and implement advanced Schema.org markup.", impact: "You receive a steady pipeline of high-quality, purpose-driven content that ranks, positions your team as an authority, and technically structures information so Google can easily feature it in rich results." },
-    { icon: <Map className="w-6 h-6" />, title: "Local Visibility & Google Business Profile Management", do: "We fully optimize and manage your Google Business Profile, including category selection, photo management, posts, and professional Q&A engagement, with a secure review moderation system.", impact: "Builds trust and dominates local search. A vibrant, actively managed GBP profile significantly increases your visibility in local \"Map Pack\" results and attracts store visits or calls." }
-  ],
-  experience: [
-    { title: "A Plain-English SEO Dashboard", text: "No jargon. A clear view of your visibility, a prioritized list of technical issues, and a content calendar." },
-    { title: "Ready-to-Approve Content Assets", text: "Receive fully outlined and drafted articles, engineered for users and search engines, streamlining your editorial process." },
-    { title: "A Managed Reviews Inbox", text: "We provide suggested, brand-aligned replies to customer reviews, emphasizing authentic engagement." }
-  ],
-  roi: [
-    "Traffic Quality. Increase in qualified organic sessions.",
-    "Efficiency. Reduced time to index for new content.",
-    "Visibility Growth. Expanded target term coverage and rankings.",
-    "Authority Signals. Growth in Featured Snippet and local Map Pack visibility.",
-    "Reputation Health. Positive trends in review volume and ratings."
-  ]
-};
-const aeoData = {
-  title: "AI & Answer Engine Optimization (AEO) Services",
-  subtitle: "Establishing Authority in the Conversational Era",
-  intro: "The future of search is not just about links; it's about being cited as a source. We optimize your entire footprint to ensure Large Language Models (LLMs) recognize and reference your organization as a definitive authority.",
-  pillars: [
-    { icon: <Brain className="w-6 h-6" />, title: "Entity-Based Content Optimization", do: "We move beyond keywords to optimize for real-world concepts (entities) that LLMs understand, building a foundational \"Question Bank\" and transforming them into concise, evidence-rich Q&A pages with structured Schema.org markup.", impact: "Makes your content intrinsically easier for AI to quote accurately, positioning your site as the primary source for answers, which directly translates into brand citations in AI summaries." },
-    { icon: <Network className="w-6 h-6" />, title: "Knowledge Graph Construction", do: "We audit and structure your content to strengthen your brand's presence in the interconnected \"knowledge graph\" that powers intelligent search, clarifying entity relationships and verifying official data points.", impact: "Builds a durable, semantic understanding of your authority that both traditional search and AI models rely on, increasing the likelihood of being presented as a trusted node of information." },
-    { icon: <ShieldCheck className="w-6 h-6" />, title: "Fact-Checking & Authority Building", do: "For your most critical pages, we help you add an \"Evidence\" section that cites primary sources and original data. We ensure your published facts are precise, current, and well-referenced.", impact: "LLMs are trained to prioritize accurate, well-sourced data. By becoming a verified source of truth, you dramatically increase your value to these models, making your content indispensable for training and response generation." },
-    { icon: <Settings className="w-6 h-6" />, title: "Strategic AI Crawler Management", do: "We provide strategic control over how AI crawlers access your site, implementing robots.txt directives and experimenting with emerging conventions to guide models to your most canonical resources.", impact: "Gives you agency in the new AI landscape. You can choose to fully engage with platforms or restrict scraping based on informed strategy rather than default settings." }
-  ],
-  experience: [
-    { title: "The AEO Coverage Board", text: "A clear dashboard showing which questions from your bank are live, which need updates, and which lack strong citations." },
-    { title: "Weekly \"Answer Diff\" Snapshots", text: "Periodic reports showing how AI answers to your core questions have evolved, including when and how your brand citations appear." }
-  ],
-  roi: [
-    "Citation Rate. Your \"Answer with citation\" rate in AI responses.",
-    "Brand Presence. Volume and context of brand mentions in AI answers.",
-    "Direct Impact. Traffic and conversions from your Q&A pages.",
-    "Authority Growth. Improvement in E-E-A-T signals across your domain."
-  ]
-};
-const asoData = {
-  title: "App Store Optimization (ASO)",
-  subtitle: "Improve Store Discovery & Install Conversion",
-  intro: "With millions of apps fighting for attention, having a great app isn't enough. We optimize every element of your store listing to drive organic downloads and maximize the efficiency of your paid user acquisition campaigns.",
-  pillars: [
-    { icon: <FileText className="w-6 h-6" />, title: "Metadata Refinement", do: "We refine store metadata including titles, descriptions, and localized variants to target high-value keywords across different regions.", impact: "Ensures your app is discoverable by the right users in every market you target, laying the foundation for organic growth." },
-    { icon: <Palette className="w-6 h-6" />, title: "Creative Asset Optimization", do: "We optimize visual assets including icons, screenshots, and preview videos to capture attention immediately.", impact: "Drastically improves the conversion rate from 'Page View' to 'Install' by communicating value instantly." },
-    { icon: <FlaskConical className="w-6 h-6" />, title: "Google Play Store Experiments", do: "We run A/B tests on icons, screenshots, and text, using the Asset Library to organize creatives effectively.", impact: "Scientifically validates which assets perform best, removing guesswork from your creative strategy and maximizing ROI." },
-    { icon: <Smartphone className="w-6 h-6" />, title: "iOS Custom Product Pages", do: "We use Custom Product Pages (CPPs) to align store pages and Apple Search Ads variations with specific user intents, boosting relevance and conversion rates for paid traffic.", impact: "Aligns the ad promise with the landing page reality, significantly boosting relevance scores and conversion rates for paid traffic." }
-  ],
-  experience: [
-    { title: "Creative Boards", text: "Before/after visual comparisons and evolution of your store assets, giving you clear insight into creative direction." },
-    { title: "Testing Plans", text: "Comprehensive A/B testing roadmaps segmented by locale or audience to systematically improve performance." }
-  ],
-  roi: [
-    "Conversion. Store page to install CVR.",
-    "Visibility. Browse & search visibility.",
-    "Reputation. Review volume & ratings.",
-    "Retention. Day 1 & 7 retention stats."
-  ]
-};
+// --- NEW MODERN ILLUSTRATIONS (Reach Page Style) ---
 
-const optimisationSections = [
-  {
-    tabTitle: "Technical SEO",
-    tabIcon: <Search />,
-    theme: 'blue',
-    data: technicalSeoData
-  },
-  {
-    tabTitle: "AEO",
-    tabIcon: <Sparkles />,
-    theme: 'indigo',
-    data: aeoData
-  },
-  {
-    tabTitle: "ASO",
-    tabIcon: <Smartphone />,
-    theme: 'sky',
-    data: asoData
-  }
-];
-
-const OptimisationPage: React.FC = () => {
+const TechnicalSeoIllustration = () => {
   return (
-    <div className="pt-20 md:pt-0 pb-12 bg-slate-50 dark:bg-icy-dark min-h-screen relative overflow-x-hidden transition-colors duration-300">
-      <WavyBackground 
-        className="max-w-4xl mx-auto pb-12 md:pb-40 px-4"
-        containerClassName="h-[50vh] md:h-[80vh]"
-        colors={['#4092ef', '#0079d2', '#22d3ee', '#003683', '#a5f3fc']}
-        waveWidth={60}
-        backgroundFill="#001358"
-        blur={5}
-        speed="slow"
-        waveOpacity={1}
-      >
-        <AnimatedText 
-          text="Total Optimisation"
-          className="text-4xl sm:text-5xl md:text-8xl font-sans text-center text-white tracking-tight drop-shadow-lg"
-          highlightedWords={{
-            'Optimisation': 'bg-gradient-to-r from-cyan-400 to-blue-600'
-          }}
-        />
-        <motion.p 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.8, duration: 0.8 }}
-            className="mt-6 text-xl text-white/90 max-w-lg mx-auto leading-relaxed drop-shadow-md"
-        >
-            Dominate search. Be the answer.
-        </motion.p>
-      </WavyBackground>
+    <div className="w-full h-full min-h-[320px] bg-slate-800/50 flex items-center justify-center relative overflow-hidden group-hover:scale-[1.02] transition-transform duration-500 rounded-2xl">
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(64,146,239,0.1),transparent_50%)]" />
+      
+      {/* Code Window Container */}
+      <div className="relative z-10 w-64 bg-slate-900 border border-slate-700 rounded-xl shadow-2xl overflow-hidden flex flex-col">
+        {/* Window Header */}
+        <div className="h-8 bg-slate-900 border-b border-slate-700 flex items-center px-3 gap-1.5">
+          <div className="w-2.5 h-2.5 rounded-full bg-red-500/80" />
+          <div className="w-2.5 h-2.5 rounded-full bg-yellow-500/80" />
+          <div className="w-2.5 h-2.5 rounded-full bg-green-500/80" />
+        </div>
+        
+        {/* Code Content */}
+        <div className="p-4 space-y-3 relative">
+          <div className="w-3/4 h-2 bg-slate-600 rounded opacity-50" />
+          <div className="w-1/2 h-2 bg-slate-600 rounded opacity-50" />
+          <div className="w-full h-2 bg-slate-600 rounded opacity-50" />
+          <div className="w-5/6 h-2 bg-slate-600 rounded opacity-50" />
+          
+          {/* Scanning Effect */}
+          <motion.div 
+            className="absolute left-0 right-0 h-[2px] bg-blue-500 shadow-[0_0_10px_rgba(59,130,246,0.8)] z-20"
+            animate={{ top: ['0%', '100%', '0%'] }}
+            transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
+          />
+        </div>
 
-      <TabbedMegaSections sections={optimisationSections} />
+        {/* Floating Badges */}
+        <motion.div 
+          className="absolute -right-6 top-12 bg-emerald-500/10 border border-emerald-500/30 backdrop-blur-md px-3 py-1.5 rounded-full flex items-center gap-2"
+          animate={{ x: [0, -5, 0], y: [0, 5, 0] }}
+          transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+        >
+          <CheckCircle2 className="w-4 h-4 text-emerald-400" />
+          <span className="text-xs font-bold text-emerald-400 font-sans">98% Health</span>
+        </motion.div>
+      </div>
+
+      {/* Background Elements */}
+      <motion.div 
+        className="absolute bottom-10 left-10 text-blue-500/20"
+        animate={{ rotate: 360 }}
+        transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+      >
+        <Server className="w-16 h-16 opacity-50" />
+      </motion.div>
     </div>
   );
 };
 
-export default OptimisationPage;
+const AeoIllustration = () => {
+  return (
+    <div className="w-full h-full min-h-[320px] bg-slate-800/50 flex items-center justify-center relative overflow-hidden group-hover:scale-[1.02] transition-transform duration-500 rounded-2xl">
+      <div className="absolute inset-0 bg-grid-slate-700/20 [mask-image:radial-gradient(ellipse_at_center,black,transparent)]" />
+      
+      {/* Central AI Hub */}
+      <div className="relative z-10">
+        <motion.div 
+          className="w-24 h-24 bg-blue-500/10 rounded-full border border-blue-500/30 backdrop-blur-sm flex items-center justify-center relative"
+          animate={{ boxShadow: ["0 0 0px rgba(59,130,246,0)", "0 0 30px rgba(59,130,246,0.3)", "0 0 0px rgba(59,130,246,0)"] }}
+          transition={{ duration: 3, repeat: Infinity }}
+        >
+          <Bot className="w-10 h-10 text-blue-500" />
+          
+          {/* Orbiting Nodes */}
+          {[0, 120, 240].map((deg, i) => (
+            <motion.div
+              key={i}
+              className="absolute w-full h-full"
+              animate={{ rotate: 360 }}
+              transition={{ duration: 8, repeat: Infinity, ease: "linear", delay: i * 2 }}
+            >
+              <div 
+                className="absolute -top-6 left-1/2 -translate-x-1/2 bg-slate-900 p-2 rounded-lg border border-blue-500/30 shadow-lg"
+                style={{ transform: 'rotate(-360deg)' }} 
+              >
+                {i === 0 && <Mic className="w-4 h-4 text-cyan-400" />}
+                {i === 1 && <Database className="w-4 h-4 text-purple-400" />}
+                {i === 2 && <Network className="w-4 h-4 text-indigo-400" />}
+              </div>
+            </motion.div>
+          ))}
+        </motion.div>
+      </div>
+
+      {/* Voice Waves */}
+      {[1, 2, 3].map((i) => (
+        <motion.div
+          key={i}
+          className="absolute border border-blue-500/10 rounded-full"
+          style={{ width: `${i * 150}px`, height: `${i * 150}px` }}
+          animate={{ scale: [0.8, 1.1, 0.8], opacity: [0.1, 0.3, 0.1] }}
+          transition={{ duration: 4, repeat: Infinity, delay: i * 0.5 }}
+        />
+      ))}
+    </div>
+  );
+};
+
+const AsoIllustration = () => {
+  return (
+    <div className="w-full h-full min-h-[320px] bg-slate-800/50 flex items-center justify-center relative overflow-hidden group-hover:scale-[1.02] transition-transform duration-500 rounded-2xl">
+      <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent" />
+      
+      {/* 3D Phone Container */}
+      <motion.div 
+        className="relative w-40 h-72 bg-slate-800 rounded-[2rem] border-4 border-slate-600 shadow-2xl flex flex-col overflow-hidden"
+        initial={{ rotateY: -15, rotateX: 10 }}
+        animate={{ rotateY: [-15, -5, -15], rotateX: [10, 5, 10] }}
+        transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+        style={{ transformStyle: 'preserve-3d', perspective: '1000px' }}
+      >
+        {/* Notch */}
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-20 h-5 bg-slate-900 rounded-b-xl z-20" />
+        
+        {/* Screen Content */}
+        <div className="flex-1 bg-slate-900/50 p-3 pt-8 space-y-3">
+          <div className="w-12 h-12 bg-blue-500 rounded-xl mb-2 mx-auto" />
+          <div className="h-2 w-20 bg-slate-700 rounded mx-auto" />
+          <div className="flex justify-center gap-1">
+            {[1,2,3,4,5].map(i => <Star key={i} className="w-3 h-3 text-yellow-500 fill-yellow-500" />)}
+          </div>
+          <div className="h-8 bg-blue-600 rounded-lg mt-4 w-full flex items-center justify-center text-[10px] font-bold text-white font-sans">
+            GET
+          </div>
+        </div>
+      </motion.div>
+
+      {/* Floating Stats Card */}
+      <motion.div 
+        className="absolute bottom-16 right-16 bg-slate-900/90 border border-slate-700 backdrop-blur-md p-3 rounded-xl shadow-xl flex items-center gap-3"
+        animate={{ y: [0, -10, 0] }}
+        transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+      >
+        <div className="p-2 bg-blue-500/20 rounded-lg">
+          <Download className="w-5 h-5 text-blue-500" />
+        </div>
+        <div>
+          <div className="text-sm font-bold text-white font-sans">+150%</div>
+          <div className="text-[10px] text-slate-400 font-body">Downloads</div>
+        </div>
+      </motion.div>
+    </div>
+  );
+};
+
+const optimisationSections = [
+  {
+    heading: "Technical SEO",
+    description: "At Icycon, we engineer digital visibility. We don’t just 'do SEO'. We build the technical foundation and create the strategic content that ensures your organization is found and trusted by the exact customers searching for your solutions. Here’s how our services translate into your growth.",
+    services: [
+      "Technical Foundation",
+      "Search Intent Mapping",
+      "Strategic Content Creation",
+      "Local Visibility & GBP"
+    ],
+    illustration: <TechnicalSeoIllustration />
+  },
+  {
+    heading: "Answer Engine Optimization",
+    description: "We optimize your content for semantic search and voice assistants. By structuring your data for knowledge graphs and AI, we position you as a definitive authority, ensuring you provide the direct answers users are looking for.",
+    services: [
+      "Entity-Based Optimization",
+      "Knowledge Graph Construction",
+      "Authority & Fact-Checking",
+      "AI Crawler Management"
+    ],
+    illustration: <AeoIllustration />
+  },
+  {
+    heading: "App Store Optimization",
+    description: "We optimize your app for discovery and conversion in digital stores. By structuring your metadata and creatives for algorithmic search and user intent, we position your app as the definitive choice, ensuring you capture the immediate action users are ready to take.",
+    services: [
+      "Metadata Refinement",
+      "Creative Asset Optimization",
+      "A/B Testing (Google Play)",
+      "Custom Product Pages (iOS)"
+    ],
+    illustration: <AsoIllustration />
+  }
+];
+
+const Optimization: React.FC = () => {
+  return (
+    <>
+       <WavyBackground 
+         className="max-w-4xl mx-auto pb-40" 
+         containerClassName="h-[80vh]"
+         colors={['#4092ef', '#0079d2', '#003683', '#001358']}
+         backgroundFill="#001358"
+       >
+        <AnimatedText
+          text="Total Optimization "
+          className="text-4xl md:text-7xl lg:text-8xl text-white font-bold text-center font-sans"
+          highlightedWords={{
+            'Optimization': 'bg-gradient-to-r from-icy-main to-icy-secondary',
+            
+          }}
+        />
+        <p className="text-base md:text-lg mt-6 text-white text-center font-body">
+          Dominate Search. Be The Answer
+        </p>
+      </WavyBackground>
+      {/* Reverted background to slate-950 and removed progressive darkening logic */}
+      <div className="py-20 bg-icy-dark -mt-20">
+        <div className="container mx-auto px-6">
+          <div className="space-y-16">
+            {optimisationSections.map((section, index) => (
+              <MegaSectionCard
+                key={index}
+                heading={section.heading}
+                services={section.services}
+                description={section.description}
+                illustration={section.illustration}
+                // No className passed, effectively reverting to default slate styles in the component
+              />
+            ))}
+          </div>
+        </div>
+      </div>
+    </>
+  );
+};
+
+export default Optimization;

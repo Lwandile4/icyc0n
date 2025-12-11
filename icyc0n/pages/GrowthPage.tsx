@@ -1,115 +1,360 @@
 
 import React from 'react';
-import { motion, Variants } from 'framer-motion';
-import { Share2, Users, Video, Sparkles, Smartphone, Globe, BookOpen, TrendingUp, Repeat, Calculator } from 'lucide-react';
+import { motion } from 'framer-motion';
+import { Share2, Users, Video, Sparkles, Smartphone, Repeat, Calculator, ShieldCheck, TrendingUp } from 'lucide-react';
 import AnimatedArrows from '../components/ui/animated-arrows';
 import { AnimatedText } from '../components/ui/animated-text';
-import { TabbedMegaSections } from '../components/ui/tabbed-mega-sections';
 
 // ILLUSTRATION COMPONENTS
-const SocialIllustration = () => (
-    <div className="w-full h-48 rounded-2xl bg-slate-900/50 border border-white/10 flex items-center justify-center p-4 overflow-hidden relative">
-        <div className="absolute inset-0 bg-grid-slate-700/20 [mask-image:linear-gradient(0deg,#000,rgba(0,0,0,0))]"></div>
-        <div className="flex items-center justify-center gap-4">
-            {[Share2, Users, Video].map((Icon, i) => (
-                <motion.div key={i} initial={{ opacity: 0, scale: 0.5 }} whileInView={{ opacity: 1, scale: 1 }} transition={{ delay: 0.2 + i * 0.1 }} className={`p-4 rounded-full bg-blue-500/10 text-blue-400 border border-blue-500/20 shadow-lg ${i === 1 ? 'scale-125 mx-4' : ''}`}>
-                    <Icon className="w-8 h-8" />
+
+const SocialIllustration = () => {
+    return (
+        <div className="w-full h-full min-h-[280px] flex items-center justify-center relative overflow-hidden group-hover:scale-[1.02] transition-transform duration-700 perspective-1000">
+            
+            {/* Connecting Lines (SVG) */}
+            <svg className="absolute inset-0 w-full h-full pointer-events-none z-0">
+                <defs>
+                    <linearGradient id="socialGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                        <stop offset="0%" stopColor="rgba(59, 130, 246, 0)" />
+                        <stop offset="50%" stopColor="rgba(59, 130, 246, 0.5)" />
+                        <stop offset="100%" stopColor="rgba(59, 130, 246, 0)" />
+                    </linearGradient>
+                </defs>
+                {/* Lines from center to satellites */}
+                <motion.line x1="50%" y1="50%" x2="20%" y2="30%" stroke="url(#socialGradient)" strokeWidth="2" animate={{ opacity: [0.2, 0.5, 0.2] }} transition={{ duration: 3, repeat: Infinity }} />
+                <motion.line x1="50%" y1="50%" x2="80%" y2="30%" stroke="url(#socialGradient)" strokeWidth="2" animate={{ opacity: [0.2, 0.5, 0.2] }} transition={{ duration: 3, repeat: Infinity, delay: 1 }} />
+                <motion.line x1="50%" y1="50%" x2="50%" y2="80%" stroke="url(#socialGradient)" strokeWidth="2" animate={{ opacity: [0.2, 0.5, 0.2] }} transition={{ duration: 3, repeat: Infinity, delay: 2 }} />
+            </svg>
+
+            {/* Central Hub */}
+            <div className="relative z-10">
+                <motion.div 
+                    animate={{ boxShadow: ["0 0 20px rgba(59,130,246,0.2)", "0 0 40px rgba(59,130,246,0.6)", "0 0 20px rgba(59,130,246,0.2)"] }}
+                    transition={{ duration: 3, repeat: Infinity }}
+                    className="w-20 h-20 bg-blue-500/20 rounded-full border border-blue-400/50 backdrop-blur-md flex items-center justify-center relative"
+                >
+                    <div className="absolute inset-0 bg-blue-500/20 rounded-full animate-ping opacity-20"></div>
+                    <Share2 className="w-8 h-8 text-blue-300" />
+                </motion.div>
+            </div>
+
+            {/* Orbiting Satellites */}
+            <motion.div 
+                className="absolute top-[20%] left-[15%] p-3 rounded-2xl bg-slate-800/60 border border-blue-500/40 backdrop-blur-md shadow-xl"
+                animate={{ y: [0, -10, 0] }}
+                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+            >
+                <Users className="w-5 h-5 text-blue-300" />
+            </motion.div>
+
+            <motion.div 
+                className="absolute top-[20%] right-[15%] p-3 rounded-2xl bg-slate-800/60 border border-blue-500/40 backdrop-blur-md shadow-xl"
+                animate={{ y: [0, -15, 0] }}
+                transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+            >
+                <Video className="w-5 h-5 text-blue-300" />
+            </motion.div>
+
+            <motion.div 
+                className="absolute bottom-[15%] left-[50%] -translate-x-1/2 p-3 rounded-2xl bg-slate-800/60 border border-blue-500/40 backdrop-blur-md shadow-xl"
+                animate={{ y: [0, -8, 0] }}
+                transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
+            >
+                <Smartphone className="w-5 h-5 text-blue-300" />
+            </motion.div>
+        </div>
+    );
+};
+
+const MultilingualIllustration = () => {
+    const greetings = [
+        { text: "Hello", x: 0, y: 0, scale: 1.5, delay: 0 },
+        { text: "Hola", x: -80, y: -60, scale: 1, delay: 1 },
+        { text: "Bonjour", x: 80, y: -50, scale: 1.1, delay: 2 },
+        { text: "Ciao", x: -60, y: 60, scale: 0.9, delay: 3 },
+        { text: "Namaste", x: 70, y: 50, scale: 1, delay: 1.5 },
+        { text: "Konnichiwa", x: -90, y: 0, scale: 0.8, delay: 2.5 },
+        { text: "Salam", x: 0, y: -90, scale: 0.9, delay: 0.5 },
+        { text: "Hallo", x: 0, y: 90, scale: 0.8, delay: 3.5 },
+    ];
+
+    return (
+        <div className="w-full h-full min-h-[280px] flex items-center justify-center relative overflow-hidden group-hover:scale-[1.02] transition-transform duration-700">
+            {greetings.map((item, index) => (
+                <motion.div
+                    key={index}
+                    className="absolute font-bold text-cyan-300/80 drop-shadow-[0_0_10px_rgba(34,211,238,0.3)]"
+                    initial={{ opacity: 0, scale: 0 }}
+                    animate={{ 
+                        opacity: [0.4, 1, 0.4], 
+                        scale: [item.scale * 0.9, item.scale * 1.1, item.scale * 0.9],
+                        x: item.x,
+                        y: item.y
+                    }}
+                    transition={{ 
+                        duration: 4, 
+                        repeat: Infinity, 
+                        delay: item.delay,
+                        ease: "easeInOut"
+                    }}
+                    style={{ fontSize: `${item.scale}rem` }}
+                >
+                    {item.text}
                 </motion.div>
             ))}
+            
+            {/* Background glowing orbs for depth */}
+            <motion.div 
+                className="absolute w-32 h-32 bg-cyan-500/10 rounded-full blur-3xl"
+                animate={{ scale: [1, 1.2, 1], opacity: [0.3, 0.6, 0.3] }}
+                transition={{ duration: 5, repeat: Infinity }}
+            />
         </div>
-    </div>
-);
-const MultilingualIllustration = () => (
-    <div className="w-full h-48 rounded-2xl bg-slate-900/50 border border-white/10 flex items-center justify-center p-4 overflow-hidden relative">
-        <div className="absolute inset-0 bg-grid-slate-700/20 [mask-image:linear-gradient(0deg,#000,rgba(0,0,0,0))]"></div>
-        <div className="relative flex items-center justify-center">
-            <motion.div initial={{ opacity: 0, scale: 0.8 }} whileInView={{ opacity: 1, scale: 1 }} transition={{ delay: 0.2 }}>
-                <Globe className="w-24 h-24 text-cyan-400 opacity-30" />
-            </motion.div>
-            {['文', 'A', 'अ'].map((char, i) => (
-                <motion.span key={i} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 + i * 0.1 }} className="absolute font-bold text-3xl text-cyan-300" style={{ transform: `rotate(${i * 120}deg) translate(60px) rotate(-${i * 120}deg)` }}>
-                    {char}
-                </motion.span>
-            ))}
-        </div>
-    </div>
-);
+    );
+};
+
 const FreeZoneIllustration = () => (
-    <div className="w-full h-48 rounded-2xl bg-slate-900/50 border border-white/10 flex items-center justify-center p-4 overflow-hidden relative">
-        <div className="absolute inset-0 bg-grid-slate-700/20 [mask-image:linear-gradient(0deg,#000,rgba(0,0,0,0))]"></div>
-        <div className="flex items-center space-x-4">
-            <motion.div initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} transition={{ delay: 0.2 }}><Calculator className="w-16 h-16 text-teal-400 bg-teal-500/10 p-4 rounded-2xl border border-teal-500/20" /></motion.div>
-            <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }}><Sparkles className="w-8 h-8 text-white" /></motion.div>
-            <motion.div initial={{ opacity: 0, x: 20 }} whileInView={{ opacity: 1, x: 0 }} transition={{ delay: 0.4 }}><TrendingUp className="w-16 h-16 text-teal-300 bg-teal-500/10 p-4 rounded-2xl border border-teal-500/20" /></motion.div>
+    <div className="w-full h-full min-h-[280px] flex items-center justify-center relative overflow-hidden group-hover:scale-[1.02] transition-transform duration-700">
+        
+        {/* 3D Dashboard Container */}
+        <div 
+            className="relative w-64 h-48"
+            style={{ 
+                perspective: '1000px',
+                transformStyle: 'preserve-3d'
+            }}
+        >
+            <motion.div 
+                className="w-full h-full relative"
+                initial={{ rotateX: 20, rotateY: -15 }}
+                animate={{ rotateY: [-15, -5, -15], rotateX: [20, 25, 20] }}
+                transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+                style={{ transformStyle: 'preserve-3d' }}
+            >
+                {/* Main Dashboard Panel */}
+                <div className="absolute inset-0 bg-slate-900/60 border border-teal-500/30 rounded-2xl shadow-2xl backdrop-blur-xl flex flex-col p-4 space-y-3">
+                    {/* Header */}
+                    <div className="flex items-center gap-2 border-b border-teal-500/20 pb-2">
+                        <div className="w-2 h-2 rounded-full bg-red-400/80"></div>
+                        <div className="w-2 h-2 rounded-full bg-yellow-400/80"></div>
+                        <div className="w-2 h-2 rounded-full bg-green-400/80"></div>
+                        <div className="ml-auto w-16 h-1.5 bg-teal-500/20 rounded-full"></div>
+                    </div>
+                    
+                    {/* Content */}
+                    <div className="flex gap-3 h-full">
+                        <div className="w-1/3 bg-teal-500/10 rounded-lg border border-teal-500/20 p-2 flex flex-col items-center justify-center gap-1">
+                             <Calculator className="w-6 h-6 text-teal-400" />
+                             <div className="w-8 h-1 bg-teal-500/30 rounded-full"></div>
+                        </div>
+                        <div className="w-2/3 bg-slate-800/40 rounded-lg border border-white/5 p-2 relative overflow-hidden">
+                             <div className="absolute bottom-0 left-0 right-0 h-8 bg-gradient-to-t from-teal-500/10 to-transparent"></div>
+                             <div className="flex items-end justify-between h-full gap-1 px-1">
+                                 <motion.div animate={{ height: ["40%", "70%", "40%"] }} transition={{ duration: 2, repeat: Infinity }} className="w-full bg-teal-400/40 rounded-t-sm"></motion.div>
+                                 <motion.div animate={{ height: ["60%", "30%", "60%"] }} transition={{ duration: 3, repeat: Infinity }} className="w-full bg-teal-400/40 rounded-t-sm"></motion.div>
+                                 <motion.div animate={{ height: ["50%", "80%", "50%"] }} transition={{ duration: 2.5, repeat: Infinity }} className="w-full bg-teal-400/40 rounded-t-sm"></motion.div>
+                             </div>
+                        </div>
+                    </div>
+                </div>
+
+                {/* Floating Elements (Z-Axis) */}
+                <motion.div 
+                    className="absolute -right-8 top-8 p-3 bg-slate-800/80 border border-teal-400/30 rounded-xl shadow-xl backdrop-blur-md"
+                    animate={{ z: 40, y: [0, -10, 0] }}
+                    transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                    style={{ transform: "translateZ(40px)" }}
+                >
+                    <TrendingUp className="w-6 h-6 text-teal-300" />
+                </motion.div>
+
+                 <motion.div 
+                    className="absolute -left-4 -bottom-4 p-2 bg-teal-500/10 border border-teal-400/30 rounded-lg backdrop-blur-md"
+                    animate={{ z: 20, y: [0, 5, 0] }}
+                    transition={{ duration: 3, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+                    style={{ transform: "translateZ(20px)" }}
+                >
+                    <Sparkles className="w-5 h-5 text-teal-200" />
+                </motion.div>
+            </motion.div>
         </div>
     </div>
 );
 
+// DATA
 const socialData = {
   title: "Social & Community Marketing Services", subtitle: "Policy-Compliant Audience Growth", intro: "We ensure your brand is present where your customers spend their time, distributing value and converting attention into demand, all while strictly adhering to community rules.",
   pillars: [
-    { icon: <Share2 className="w-6 h-6" />, title: "Unified Social Media Management", do: "We develop and manage unified content calendars for LinkedIn, X, Instagram, and TikTok, creating a mix of short videos, carousels, and text posts published at optimal times.", impact: "Builds a reliable and professional brand presence, keeping your audience engaged, nurturing trust, and systematically growing your follower base across all major platforms." },
-    { icon: <Smartphone className="w-6 h-6" />, title: "Viral Short-Form Video Production", do: "We specialize in producing and editing high-impact Reels, Shorts, and TikToks, engineered to hook attention in the first three seconds using dynamic editing and trending audio.", impact: "Captures explosive algorithm-friendly growth. Short-form video is the primary driver of discovery, and by mastering this format, we significantly increase your reach and attract new audiences." },
-    { icon: <Users className="w-6 h-6" />, title: "Authentic Community Participation", do: "We facilitate genuine brand participation in relevant online communities like Reddit and Discord. Our agents operate under real accounts, provide value, and follow all community rules with zero spam.", impact: "Builds authentic brand authority and trust within niche communities, driving qualified interest from highly engaged users and establishing your brand as a helpful peer." },
-    { icon: <Video className="w-6 h-6" />, title: "Strategic YouTube Channel Growth", do: "We manage and optimize your YouTube channel, crafting compelling titles, descriptions, and implementing video chapters and compliant metadata to drive growth.", impact: "Transforms YouTube from a video host into a powerful discovery and lead generation engine, increasing visibility and subscriber growth while protecting your channel from policy violations." },
-    { icon: <Sparkles className="w-6 h-6" />, title: "Creative Acceleration with Responsible AI", do: "We optionally leverage next-gen AI tools to accelerate creative production, using text-to-video or AI image generation for social visuals, with transparency measures like watermarking.", impact: "Dramatically increases the volume and variety of your visual content, allowing for rapid testing of creative concepts to keep your social feeds fresh and engaging." }
+    { icon: <Share2 className="w-6 h-6" />, title: "Unified Social Media Management" },
+    { icon: <Smartphone className="w-6 h-6" />, title: "Viral Short-Form Video Production" },
+    { icon: <Users className="w-6 h-6" />, title: "Authentic Community Participation" },
+    { icon: <Video className="w-6 h-6" />, title: "Strategic YouTube Channel Growth" },
+    { icon: <Sparkles className="w-6 h-6" />, title: "Creative Acceleration with Responsible AI" }
   ],
-  experience: [ { title: "Strategic Content Calendar", text: "A clear week-by-week calendar with post drafts and a rationale explaining the strategy behind each piece." }, { title: "DM & Comments Playbook", text: "A playbook that routes high-intent conversations to sales and provides guidelines to squash policy risks in public interactions." } ],
-  roi: [ "Qualified Traffic. Visits to your website from social platforms.", "Engagement & Amplification. Post saves, shares, and audience sentiment.", "Responsiveness. Average response time to community inquiries.", "Efficiency. Customer Acquisition Cost (CAC) for social ad campaigns." ],
   guardrails: "We operate with strict adherence to platform policies, including YouTube’s spam rules, Reddit’s guidelines, and Discord’s terms. We prohibit ban evasion, vote manipulation, and any inauthentic behavior to ensure your brand’s reputation remains secure."
 };
 const multilingualData = {
   title: "Multilingual SEO Services", subtitle: "Serve the Right Language, Win the Right Market", intro: "We build dedicated, culturally adapted digital presences to unlock new international markets. Our process uses automated translation as a starting point, followed by meticulous human refinement.",
   pillars: [
-    { icon: <Globe className="w-6 h-6" />, title: "Strategic Multilingual Site Architecture", do: "We launch and manage dedicated, correctly structured language versions of your site (e.g., /es/, /de/), implementing precise hreflang tags and translating all critical on-page elements.", impact: "Eliminates technical barriers to global discovery. Search engines can clearly understand which page to rank for which audience, dramatically improving your visibility in local search results." },
-    { icon: <BookOpen className="w-6 h-6" />, title: "Cultural Adaptation & Glossary Management", do: "We adapt messaging, idioms, and value propositions to align with local cultural norms. We build and maintain a centralized brand glossary for consistent terminology.", impact: "Builds trust and relevance. Visitors feel your brand understands their specific needs and speaks their language authentically, reinforcing your brand identity globally." },
-    { icon: <TrendingUp className="w-6 h-6" />, title: "Phased, Data-Driven Market Expansion", do: "We adopt a strategic, low-risk expansion model, localizing for 1-2 high-value locales first. We then measure traction and refine our process before expanding further.", impact: "Ensures efficient use of your budget. You invest in markets that show clear returns, minimizing guesswork and building a scalable blueprint for global growth." }
+    { icon: <TrendingUp className="w-6 h-6" />, title: "Phased, Data-Driven Market Expansion" },
+    { icon: <Repeat className="w-6 h-6" />, title: "Cultural Adaptation & Glossary Management" }
   ],
-  experience: [ { title: "Centralized Languages Dashboard", text: "A single view showing all active locales, with content coverage, quality flags, and a prioritized list of pages to localize." }, { title: "A Living Brand Glossary", text: "Your single source of truth for approved multilingual terminology, ensuring consistency across all markets and teams." } ],
-  roi: [ "Technical Reach. The number of indexed pages per locale.", "Local Visibility. Improvement in local keyword rankings.", "Business Impact. Growth in conversions segmented by language." ]
+  guardrails: "We ensure precise hreflang implementation to avoid duplicate content penalties and employ native speakers for final review to prevent cultural missteps or awkward machine translations."
 };
 const freeZoneData = {
   title: "Free Zone Creative Services", subtitle: "Sustainable Top-of-Funnel Growth", intro: "We develop free micro-tools, calculators, and content systems to act as powerful lead magnets and drive sustainable top-of-funnel growth.",
   pillars: [
-    { icon: <Repeat className="w-6 h-6" />, title: "The 'Answer Once, Everywhere' Content Engine", do: "We transform a single customer support question into a multi-platform content campaign: a help doc, FAQ page, short video, social post, and email tip, extracting maximum value from every insight.", impact: "Creates a perpetual content machine that efficiently addresses market demand, building a comprehensive resource hub that attracts searches and nurtures leads at scale." },
-    { icon: <Calculator className="w-6 h-6" />, title: "Micro-Tool & Interactive Asset Development", do: "We propose and help develop free micro-tools like ROI calculators or diagnostic quizzes, designed for rapid publication to provide immediate utility and capture leads.", impact: "Creates high-value lead magnets that outperform traditional content. Tools solve specific problems, making them highly shareable and directly capturing lead information from engaged prospects." },
-    { icon: <TrendingUp className="w-6 h-6" />, title: "Data-Driven Trend Surfacing", do: "We continuously monitor signals from Google Trends and your analytics to surface timely, relevant topics and tool ideas that align with rising market interest.", impact: "Ensures your creative output is always aligned with real-time demand, allowing you to capitalize on emerging trends and capture traffic surges as they happen." }
+    { icon: <Repeat className="w-6 h-6" />, title: "The 'Answer Once, Everywhere' Content Engine" },
+    { icon: <Calculator className="w-6 h-6" />, title: "Micro-Tool & Interactive Asset Development" },
+    { icon: <TrendingUp className="w-6 h-6" />, title: "Data-Driven Trend Surfacing" }
   ],
-  experience: [ { title: "Strategic Ideation", text: "A Weekly Idea Pack with projected impact, effort level, and example copy to accelerate execution." }, { title: "Monthly Shipped Tally", text: "A monthly tally linking each launched tool or campaign to resulting metrics like new traffic and leads." } ],
-  roi: [ "Lead Generation. MQLs captured from free tools and content.", "Authority Growth. Quality editorial backlinks earned to your micro-tools.", "Market Reach. Expansion of new keyword rankings." ]
+  guardrails: "All lead magnets and tools are built to provide genuine standalone value, not just as gated bait. We ensure GDPR compliance for data collection and transparency in how user inputs are processed."
 };
 
 const growthSections = [
-    { tabTitle: "Social & Community", tabIcon: <Share2 />, theme: 'blue', data: socialData, illustration: <SocialIllustration /> },
-    { tabTitle: "Multilingual SEO", tabIcon: <Globe />, theme: 'cyan', data: multilingualData, illustration: <MultilingualIllustration /> },
-    { tabTitle: "Free Zone Creatives", tabIcon: <Sparkles />, theme: 'teal', data: freeZoneData, illustration: <FreeZoneIllustration /> },
+    { theme: 'blue', data: socialData, illustration: <SocialIllustration /> },
+    { theme: 'cyan', data: multilingualData, illustration: <MultilingualIllustration /> },
+    { theme: 'teal', data: freeZoneData, illustration: <FreeZoneIllustration /> },
 ];
+
+// Custom Card Component for Growth Page
+const GrowthCard = ({ data, illustration, theme }: { data: any, illustration: React.ReactNode, theme: string }) => {
+    const themeColors = {
+        blue: { 
+            accent: 'text-blue-400', 
+            pill: 'bg-blue-500/10 text-blue-300 border-blue-500/20 hover:bg-blue-500/20',
+            grad: 'from-blue-500/20 via-transparent to-transparent'
+        },
+        cyan: { 
+            accent: 'text-cyan-400', 
+            pill: 'bg-cyan-500/10 text-cyan-300 border-cyan-500/20 hover:bg-cyan-500/20',
+            grad: 'from-cyan-500/20 via-transparent to-transparent'
+        },
+        teal: { 
+            accent: 'text-teal-400', 
+            pill: 'bg-teal-500/10 text-teal-300 border-teal-500/20 hover:bg-teal-500/20',
+            grad: 'from-teal-500/20 via-transparent to-transparent'
+        }
+    };
+    const colors = themeColors[theme as keyof typeof themeColors];
+
+    return (
+        <motion.div 
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="bg-slate-900/40 backdrop-blur-xl rounded-[2rem] md:rounded-[2.5rem] overflow-hidden shadow-2xl border border-white/10 group flex flex-col relative"
+        >
+            {/* Ambient Background Glow */}
+            <div className={`absolute top-0 left-0 w-full h-full bg-gradient-to-br ${colors.grad} opacity-30 pointer-events-none`} />
+
+            <div className="flex flex-col lg:flex-row flex-grow relative z-10">
+                {/* Left Side: Illustration */}
+                <div className="lg:w-5/12 relative overflow-hidden min-h-[250px] lg:min-h-full flex flex-col">
+                    <div className="absolute inset-0 flex items-center justify-center p-6 md:p-8 z-10">
+                         {illustration}
+                    </div>
+                     {/* Overlay Label */}
+                    <div className="absolute top-4 left-4 md:top-6 md:left-6 z-20">
+                         <div className="bg-slate-900/40 backdrop-blur-md px-3 py-1 md:px-4 md:py-1.5 rounded-full text-white/90 text-[10px] md:text-xs font-bold tracking-wider border border-white/20 shadow-sm">
+                            GROWTH STRATEGY
+                         </div>
+                    </div>
+                </div>
+
+                {/* Right Side: Content */}
+                <div className="lg:w-7/12 p-6 md:p-12 flex flex-col justify-center border-t lg:border-t-0 lg:border-l border-white/5">
+                    <div className="space-y-4 md:space-y-6">
+                        <div>
+                             <h3 className={`text-xs md:text-sm font-bold tracking-widest uppercase mb-1 md:mb-2 ${colors.accent}`}>{data.subtitle}</h3>
+                             <h2 className="text-2xl md:text-3xl lg:text-4xl font-extrabold text-white leading-tight drop-shadow-sm">{data.title}</h2>
+                        </div>
+                        
+                        <p className="text-indigo-100/90 text-base md:text-lg leading-relaxed font-medium">
+                            {data.intro}
+                        </p>
+
+                        <div className="pt-4 md:pt-6">
+                            <div className="flex items-center gap-4 mb-4 md:mb-6">
+                                <div className="h-px bg-white/10 flex-grow"></div>
+                                <span className="text-indigo-200/80 font-bold tracking-widest uppercase text-xs md:text-sm">Pillars</span>
+                                <div className="h-px bg-white/10 flex-grow"></div>
+                            </div>
+                            
+                            <div className="flex flex-wrap gap-2 md:gap-3">
+                                {data.pillars.map((pillar: any, index: number) => (
+                                    <div key={index} className={`px-3 py-2 md:px-4 md:py-3 rounded-xl border flex items-center gap-2 md:gap-3 transition-colors ${colors.pill} flex-grow sm:flex-grow-0 cursor-default backdrop-blur-sm`}>
+                                        <div className="shrink-0 opacity-80 scale-75">
+                                            {pillar.icon}
+                                        </div>
+                                        <span className="text-[10px] md:text-xs font-bold uppercase tracking-wide">{pillar.title}</span>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            {/* Bottom: Guardrails */}
+            <div className="bg-white/5 backdrop-blur-md p-5 md:p-8 flex items-start gap-3 md:gap-4 border-t border-white/10 relative z-10 mt-auto">
+                <div className="shrink-0 p-1.5 md:p-2 bg-slate-800/80 rounded-full text-indigo-200 mt-1 border border-white/10">
+                    <ShieldCheck className="w-4 h-4 md:w-5 md:h-5" />
+                </div>
+                <div>
+                    <h4 className="text-indigo-100 font-bold text-xs md:text-sm uppercase tracking-wider mb-1">Safety Guardrails</h4>
+                    <p className="text-indigo-200/70 text-xs md:text-sm font-medium leading-relaxed">
+                        {data.guardrails}
+                    </p>
+                </div>
+            </div>
+        </motion.div>
+    );
+};
 
 const GrowthPage: React.FC = () => {
   return (
-    <div className="pt-20 md:pt-0 pb-12 bg-slate-50 dark:bg-icy-dark min-h-screen relative overflow-x-hidden transition-colors duration-300">
-      <div className="relative h-[60vh] md:h-[80vh] w-full flex flex-col items-center justify-center overflow-hidden bg-icy-dark">
+    <div className="pt-20 md:pt-0 pb-20 bg-slate-950 min-h-screen relative overflow-x-hidden transition-colors duration-300 selection:bg-cyan-500/30">
+      
+      {/* Ambient Background Elements for Glass Effect */}
+      <div className="fixed inset-0 pointer-events-none z-0">
+         <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-blue-600/20 rounded-full blur-[120px]" />
+         <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-cyan-600/20 rounded-full blur-[120px]" />
+         <div className="absolute top-[40%] left-[30%] w-[30%] h-[30%] bg-indigo-600/10 rounded-full blur-[100px]" />
+      </div>
+
+      <div className="relative h-[80vh] w-full flex flex-col items-center justify-center overflow-hidden bg-slate-950/80 backdrop-blur-sm z-10">
         <AnimatedArrows />
-        <div className="relative z-10 text-center px-4">
+        <div className="relative z-10 text-center px-4 mt-8 md:mt-12">
             <AnimatedText 
               text="Accelerate Growth"
-              className="text-4xl sm:text-5xl md:text-8xl font-sans text-center text-white tracking-tight drop-shadow-lg"
+              className="text-4xl sm:text-5xl md:text-7xl font-sans text-center text-white tracking-tight drop-shadow-2xl font-bold"
               highlightedWords={{
-                'Growth': 'bg-gradient-to-r from-cyan-400 to-blue-600'
+                'Growth': 'bg-gradient-to-r from-cyan-400 to-blue-500'
               }}
             />
             <motion.p 
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.8, duration: 0.8 }}
-                className="mt-6 text-xl text-white/90 max-w-lg mx-auto leading-relaxed drop-shadow-md"
+                className="mt-4 md:mt-6 text-base md:text-xl text-indigo-200/80 max-w-lg mx-auto leading-relaxed font-medium"
             >
-                Scale faster with viral loops and global infrastructure.
+                Strategies that combine social amplification with intelligent content systems.
             </motion.p>
         </div>
       </div>
       
-      <TabbedMegaSections sections={growthSections} />
+      <div className="container mx-auto px-4 -mt-10 md:-mt-20 relative z-20 space-y-8 md:space-y-16">
+        {growthSections.map((section, index) => (
+            <GrowthCard 
+                key={index}
+                data={section.data}
+                illustration={section.illustration}
+                theme={section.theme}
+            />
+        ))}
+      </div>
     </div>
   );
 };

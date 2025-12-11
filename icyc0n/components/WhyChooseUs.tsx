@@ -42,7 +42,7 @@ const WhyChooseUs: React.FC = () => {
         {/* Text Content - Centered on mobile, left-aligned on desktop */}
         <div className="text-center lg:text-left">
           <h2 className="text-4xl md:text-5xl font-bold mb-6">
-            Why top brands trust <br />
+            Why Top Brands Trust <br />
             <span className="text-icy-main">Icycon</span>
           </h2>
           <p className="text-gray-300 text-lg mb-10 leading-relaxed">
