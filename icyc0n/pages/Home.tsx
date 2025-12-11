@@ -29,12 +29,8 @@ const CTA = React.lazy(() => import('../components/CTA'));
 
 const Home: React.FC = () => {
   return (
-    <>
-      {/* PERFORMANCE: Section-specific skeleton loaders prevent layout shift
-          Each skeleton matches the exact dimensions and structure of its component */}
-      
-      {/* Hero loads first (above fold), but in separate chunk from main bundle */}
-      {/* HeroSkeleton matches full-screen Hero layout for seamless transition */}
+    <div className="bg-icy-dark min-h-screen">
+      {/* PERFORMANCE: Section-specific skeleton loaders prevent layout shift */}
       <Suspense fallback={<HeroSkeleton />}>
         <Hero />
       </Suspense>
@@ -68,7 +64,7 @@ const Home: React.FC = () => {
       <Suspense fallback={<CompactSkeleton />}>
         <CTA />
       </Suspense>
-    </>
+    </div>
   );
 };
 

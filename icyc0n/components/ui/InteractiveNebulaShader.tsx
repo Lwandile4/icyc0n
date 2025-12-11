@@ -91,7 +91,7 @@ export function InteractiveNebulaShader({
 
         // Ray-march
         // OPTIMIZATION: Reduced iterations from 5 to 4 for better performance with minimal visual loss
-        for (int i = 0; i <= 5; i++) {
+        for (int i = 0; i <= 3; i++) {
           vec3 p = vec3(0,0,5.) + normalize(vec3(uv, -1.)) * d;
           float rz = map(p);
           float f  = clamp((rz - map(p + 0.1)) * 0.5, -0.1, 1.0);

@@ -122,7 +122,7 @@ const Hero: React.FC = () => {
           >
             <Link 
               to="/auth?mode=signup" 
-              className=" relative px-8 py-3 rounded-full font-bold text-lg text-white bg-white/5 backdrop-blur-md border border-white/20 shadow-[0_0_15px_rgba(0,0,0,0.1)] transition-all duration-300 ease-out hover:bg-[#009dd3] hover:border-[#009dd3] hover:shadow-[0_0_30px_rgba(0,157,211,0.6)] hover:-translate-y-5 flex items-center gap-2 group w-full sm:w-auto justify-center"
+              className=" relative px-8 py-3 rounded-full font-bold text-lg text-white bg-white/10 backdrop-blur-md border border-white/20 shadow-[0_0_15px_rgba(0,0,0,0.1)] transition-all duration-300 ease-out hover:bg-[#009dd3] hover:border-[#009dd3] hover:shadow-[0_0_30px_rgba(0,157,211,0.6)] hover:-translate-y-5 flex items-center gap-2 group w-full sm:w-auto justify-center"
             >
               Start Your Growth <ArrowRight className="group-hover:translate-x-1 transition-transform" />
             </Link>
@@ -149,7 +149,7 @@ const Hero: React.FC = () => {
                   <RotatingEarth width={600} height={600} className="w-full h-full" isDarkMode={true} />
                 ) : (
                   // Simple placeholder circle - no D3.js, no canvas, no network requests
-                  <div className="w-full h-full rounded-full bg-white/5 border-2 border-white/10 animate-pulse" />
+                  <div className="w-full h-full rounded-full bg-white/10 border-2 border-white/10 animate-pulse" />
                 )}
             </div>
         </motion.div>

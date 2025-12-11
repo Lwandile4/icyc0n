@@ -149,7 +149,7 @@ const HomePricing: React.FC = () => {
   const [activePlan, setActivePlan] = useState<number>(1); // Default to Growth (index 1)
 
   return (
-    <section id="pricing" className="py-24 px-4 bg-slate-50 dark:bg-icy-dark transition-colors duration-300 relative overflow-hidden">
+    <section id="pricing" className="py-24 px-4 bg-icy-dark transition-colors duration-300 relative overflow-hidden">
       {/* Background glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-[800px] h-[500px] bg-icy-main/5 rounded-full blur-[120px] pointer-events-none" />
 
@@ -160,7 +160,7 @@ const HomePricing: React.FC = () => {
                 initial: { opacity: 0, y: 20 },
                 whileInView: { opacity: 1, y: 0 }
             } as any)}
-            className="text-4xl md:text-5xl font-bold mb-6 text-gray-900 dark:text-white"
+            className="text-4xl md:text-5xl font-bold mb-6 text-white"
           >
             Simple and Affordable <br />
             <span className="text-icy-main">Pricing Plans</span>
@@ -171,7 +171,7 @@ const HomePricing: React.FC = () => {
                  whileInView: { opacity: 1 },
                  transition: { delay: 0.2 }
              } as any)}
-             className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto"
+             className="text-gray-400 max-w-2xl mx-auto"
           >
              Start tracking and improving your digital growth management today.
           </motion.p>
@@ -212,13 +212,13 @@ const HomePricing: React.FC = () => {
                                 : 'hover:shadow-xl'
                             }
                             ${isActive 
-                                ? 'bg-white/80 dark:bg-white/10' 
-                                : 'bg-white/60 dark:bg-white/5'
+                                ? 'bg-white/10' 
+                                : 'bg-white/5'
                             }
                             backdrop-blur-xl
                         `}
                         style={{
-                            borderColor: isActive ? plan.color : 'rgba(255,255,255,0.1)',
+                            borderColor: isActive ? plan.color : 'rgba(34,34,59,0.5)',
                             boxShadow: isActive ? `0 20px 50px -12px ${plan.color}40` : 'none'
                         }}
                     >
@@ -234,16 +234,16 @@ const HomePricing: React.FC = () => {
                         )}
 
                         <div className="mb-8">
-                            <h3 className="text-lg font-medium mb-2 transition-colors text-gray-800 dark:text-white" style={{ color: isActive ? plan.color : undefined }}>
+                            <h3 className="text-lg font-medium mb-2 transition-colors text-white" style={{ color: isActive ? plan.color : undefined }}>
                                 {plan.name}
                             </h3>
                             <div className="flex items-baseline mb-4">
-                                <span className={`text-4xl font-bold transition-colors ${isActive ? 'text-gray-900 dark:text-white' : 'text-gray-700 dark:text-gray-300'}`}>
+                                <span className={`text-4xl font-bold transition-colors ${isActive ? 'text-white' : 'text-gray-300'}`}>
                                     {plan.price}
                                 </span>
-                                <span className="text-gray-500 dark:text-gray-400 text-sm ml-1">{plan.period}</span>
+                                <span className="text-gray-400 text-sm ml-1">{plan.period}</span>
                             </div>
-                            <p className="text-gray-500 dark:text-gray-400 text-sm h-10 leading-snug">{plan.description}</p>
+                            <p className="text-gray-400 text-sm h-10 leading-snug">{plan.description}</p>
                         </div>
 
                         <Link 
@@ -252,7 +252,7 @@ const HomePricing: React.FC = () => {
                                 w-full py-3 rounded-xl text-sm font-bold transition-all mb-8 text-center
                                 ${isActive
                                     ? 'text-white shadow-lg hover:brightness-110'
-                                    : 'bg-transparent border border-gray-300 dark:border-white/20 text-gray-700 dark:text-white hover:bg-white/50 dark:hover:bg-white/10'
+                                    : 'bg-transparent border border-white/20 text-white hover:bg-white/10'
                                 }
                             `}
                             style={{
@@ -264,9 +264,9 @@ const HomePricing: React.FC = () => {
                         </Link>
 
                         <div className="flex items-center gap-4 mb-6">
-                            <div className="h-px bg-gray-200 dark:bg-white/10 flex-grow" />
+                            <div className="h-px bg-white/10 flex-grow" />
                             <span className="text-xs text-gray-400 font-bold tracking-widest uppercase">Features</span>
-                            <div className="h-px bg-gray-200 dark:bg-white/10 flex-grow" />
+                            <div className="h-px bg-white/10 flex-grow" />
                         </div>
 
                         <ul className="space-y-4 flex-grow">
@@ -275,13 +275,13 @@ const HomePricing: React.FC = () => {
                                     <div 
                                         className="p-1 rounded-full shrink-0 transition-colors"
                                         style={{ 
-                                            backgroundColor: isActive ? plan.color : 'rgba(156, 163, 175, 0.2)', // Gray-400/20
+                                            backgroundColor: isActive ? plan.color : 'rgba(255,255,255,0.1)',
                                             color: isActive ? 'white' : 'gray'
                                         }}
                                     >
                                         <Check size={10} />
                                     </div>
-                                    <span className={`text-sm ${isActive ? 'text-gray-700 dark:text-gray-200' : 'text-gray-500 dark:text-gray-400'}`}>
+                                    <span className={`text-sm ${isActive ? 'text-white' : 'text-gray-400'}`}>
                                         {feature}
                                     </span>
                                 </li>

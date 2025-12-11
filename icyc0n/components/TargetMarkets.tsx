@@ -58,7 +58,7 @@ const TargetMarkets: React.FC = () => {
               Tailored Strategies for <br/>
               <span className="text-icy-main">Every Growth Stage</span>
             </h2>
-            <p className="text-lg text-gray-600 dark:text-gray-300 mb-8">
+            <p className="text-lg text-gray-300 mb-8">
               A powerful suite to help you master the digital landscape. Get everything you need to attract your audience, optimize every interaction, and expand your reach globally.
             </p>
             <div className="relative rounded-2xl overflow-hidden shadow-2xl border border-white/10 group">
@@ -89,7 +89,7 @@ const TargetMarkets: React.FC = () => {
                     viewport: { once: true },
                     transition: { delay: index * 0.1 }
                 } as any)}
-                className="bg-white dark:bg-icy-dark/50 backdrop-blur-sm p-6 rounded-2xl border border-gray-200 dark:border-white/10 hover:border-icy-main/50 transition-colors"
+                className="bg-icy-dark/50 backdrop-blur-sm p-6 rounded-2xl border border-white/10 hover:border-icy-main/50 transition-colors"
               >
                 <div className="flex items-center gap-3 mb-4">
                   <div className="p-2 bg-icy-main/10 text-icy-main rounded-lg">
@@ -97,12 +97,12 @@ const TargetMarkets: React.FC = () => {
                   </div>
                   <div>
                     <h4 className="font-bold">{market.title}</h4>
-                    <span className="text-xs text-gray-500 dark:text-gray-400 uppercase tracking-wide">{market.subtitle}</span>
+                    <span className="text-xs text-gray-400 uppercase tracking-wide">{market.subtitle}</span>
                   </div>
                 </div>
                 <ul className="space-y-2">
                   {market.features.map((feature, idx) => (
-                    <li key={idx} className="flex items-start gap-2 text-sm text-gray-600 dark:text-gray-300">
+                    <li key={idx} className="flex items-start gap-2 text-sm text-gray-300">
                       <div className="mt-1 w-1.5 h-1.5 rounded-full bg-icy-secondary shrink-0" />
                       {feature}
                     </li>
