@@ -37,118 +37,113 @@ const plans = [
   },
   {
     name: "Enterprise",
-    price: "$2,999",
-    period: "/mo",
+    price: "Custom Pricing",
+    period: "",
     description: "Best for large companies and teams requiring high security",
     color: "#818cf8", // Indigo-400
     features: [
-      "Custom Riona Training",
       "Dedicated Account Manager",
       "White-label Reports",
       "API Access",
       "Integration with 3rd-Party"
     ],
-    cta: "Sign Up with Enterprise"
+    cta: "Contact Us"
   }
 ];
 
 const CurveSelector = ({ activeIndex, onChange }: { activeIndex: number, onChange: (index: number) => void }) => {
-  return (
-    <div className="relative w-full max-w-lg mx-auto h-40 mb-8 select-none">
-      <svg className="w-full h-full drop-shadow-xl" viewBox="0 0 600 160" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-            <filter id="glow-home" x="-20%" y="-20%" width="140%" height="140%">
-                <feGaussianBlur stdDeviation="3" result="blur" />
-                <feComposite in="SourceGraphic" in2="blur" operator="over" />
-            </filter>
-        </defs>
-
-        {/* Base Curve Path */}
-        <path 
-          d="M 60 50 Q 300 160 540 50" 
-          className="stroke-gray-200 dark:stroke-white/10 stroke-[10px] fill-none"
-          strokeLinecap="round"
-        />
-        
-        {/* Active Path Progress */}
-        <motion.path 
-            d="M 60 50 Q 300 160 540 50"
-            className="stroke-[10px] fill-none"
-            stroke={plans[activeIndex].color}
+    return (
+      <div className="relative w-full max-w-lg mx-auto h-40 mb-8 select-none">
+        <svg className="w-full h-full drop-shadow-xl" viewBox="0 0 600 160" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+              <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+                  <feGaussianBlur stdDeviation="3" result="blur" />
+                  <feComposite in="SourceGraphic" in2="blur" operator="over" />
+              </filter>
+          </defs>
+  
+          {/* Base Curve Path */}
+          <path 
+            d="M 60 50 Q 300 160 540 50" 
+            className="stroke-gray-200 dark:stroke-white/10 stroke-[10px] fill-none"
             strokeLinecap="round"
-            {...({
-                initial: { pathLength: 0 },
-                animate: { 
-                    pathLength: activeIndex === 0 ? 0.001 : activeIndex === 1 ? 0.5 : 1,
-                    stroke: plans[activeIndex].color
-                },
-                transition: { duration: 0.6, ease: "circOut" }
-            } as any)}
-            style={{ filter: "url(#glow-home)" }}
-        />
-
-        {/* Nodes */}
-        {plans.map((plan, index) => {
-            // Curve: P0(60,50), Control(300,160), P2(540,50)
-            const positions = [
-                { x: 60, y: 50 },
-                { x: 300, y: 105 }, 
-                { x: 540, y: 50 }
-            ];
-            const pos = positions[index];
-            const isActive = activeIndex === index;
-            const isPassed = activeIndex >= index;
-
-            return (
-                <g key={index} onClick={() => onChange(index)} className="cursor-pointer group">
-                    {/* Larger Hit Area */}
-                    <circle cx={pos.x} cy={pos.y} r={40} className="fill-transparent" />
-
-                    {/* Outer Circle */}
-                    <motion.circle 
-                        cx={pos.x} 
-                        cy={pos.y} 
-                        r={isActive ? 22 : 14} 
-                        className="stroke-[4px] transition-colors duration-300"
-                        style={{ 
-                            fill: isActive ? plan.color : '#ffffff', 
-                            stroke: isPassed ? plan.color : '#e5e7eb'
-                        }}
-                        {...({ animate: { r: isActive ? 22 : 14 } } as any)}
-                    />
-                    
-                    {/* Inner Dot */}
-                    <motion.circle 
-                        cx={pos.x} 
-                        cy={pos.y} 
-                        r={isActive ? 12 : 0} 
-                        className="fill-white"
-                        {...({ 
-                            animate: { r: isActive ? 12 : 0 },
-                            initial: false 
-                        } as any)}
-                    />
-
-                    {/* Label */}
-                    <text 
-                        x={pos.x} 
-                        y={pos.y - 40} 
-                        textAnchor="middle" 
-                        className={`
-                            text-sm font-extrabold tracking-widest uppercase font-sans
-                            transition-all duration-300
-                            ${isActive ? 'fill-gray-900 dark:fill-white' : 'fill-gray-400 dark:fill-gray-500'}
-                        `}
-                    >
-                        {plan.name}
-                    </text>
-                </g>
-            );
-        })}
-      </svg>
-    </div>
-  );
-};
+          />
+          
+          {/* Active Path Progress */}
+          <motion.path 
+              d="M 60 50 Q 300 160 540 50"
+              className="stroke-[10px] fill-none"
+              stroke={plans[activeIndex].color}
+              strokeLinecap="round"
+              initial={{ pathLength: 0 }}
+              animate={{ 
+                  pathLength: activeIndex === 0 ? 0.001 : activeIndex === 1 ? 0.5 : 1,
+                  stroke: plans[activeIndex].color
+              }}
+              transition={{ duration: 0.6, ease: "circOut" }}
+              style={{ filter: "url(#glow)" }}
+          />
+  
+          {/* Nodes */}
+          {plans.map((plan, index) => {
+              const positions = [
+                  { x: 60, y: 50 },
+                  { x: 300, y: 105 }, 
+                  { x: 540, y: 50 }
+              ];
+              const pos = positions[index];
+              const isActive = activeIndex === index;
+              const isPassed = activeIndex >= index;
+  
+              return (
+                  <g key={index} onClick={() => onChange(index)} className="cursor-pointer group">
+                      {/* Larger Hit Area */}
+                      <circle cx={pos.x} cy={pos.y} r={40} className="fill-transparent" />
+  
+                      {/* Outer Circle */}
+                      <motion.circle 
+                          cx={pos.x} 
+                          cy={pos.y} 
+                          className="stroke-[4px] transition-colors duration-300"
+                          style={{ 
+                              fill: isActive ? plan.color : '#ffffff', 
+                              stroke: isPassed ? plan.color : '#e5e7eb'
+                          }}
+                          initial={{ r: 14 }}
+                          animate={{ r: isActive ? 22 : 14 }}
+                          transition={{ duration: 0.3 }}
+                      />
+                      
+                      {/* Inner Dot */}
+                      <motion.circle 
+                          cx={pos.x} 
+                          cy={pos.y} 
+                          className="fill-white"
+                          initial={{ r: 0 }}
+                          animate={{ r: isActive ? 12 : 0 }}
+                          transition={{ duration: 0.3 }}
+                      />
+  
+                      {/* Label */}
+                      <text 
+                          x={pos.x} 
+                          y={pos.y - 40} 
+                          textAnchor="middle" 
+                          className={`
+                              text-sm font-extrabold tracking-widest uppercase font-sans
+                              transition-all duration-300
+                              ${isActive ? 'fill-gray-900 dark:fill-white' : 'fill-gray-400 dark:fill-gray-500'}
+                          `}
+                      >
+                          {plan.name}
+                      </text>
+                  </g>
+              );
+          })}
+        </svg>
+      </div>
+    );
+  };
 
 const HomePricing: React.FC = () => {
   const [activePlan, setActivePlan] = useState<number>(1); // Default to Growth (index 1)
