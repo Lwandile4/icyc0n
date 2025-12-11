@@ -37,7 +37,7 @@ const Home: React.FC = () => {
 
       {/* Carousel skeleton matches ~600px height and carousel structure */}
       <Suspense fallback={<CarouselSkeleton />}>
-        <CoreServicesCarousel />
+        <CoreServicesCarousel navigate={() => {}} />
       </Suspense>
 
       {/* Section skeletons match grid layouts (6 cards for TargetMarkets) */}

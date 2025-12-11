@@ -1,133 +1,231 @@
 
-import {
-  SliderBtnGroup,
-  ProgressSlider,
-  SliderBtn,
-  SliderContent,
-  SliderWrapper,
-} from './ui/progressive-carousel';
-import { CheckCircle2, ArrowRight } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import React from 'react';
+import { CheckCircle2, ArrowRight, Cpu, Search, Layers, Globe, Share2, Radio, TrendingUp, BarChart, Zap } from 'lucide-react';
+import { motion } from 'framer-motion';
 
-// PERFORMANCE OPTIMIZATION: Responsive image URLs with multiple sizes
-// Base URLs for carousel images - Unsplash API supports automatic optimization
-const carouselItems = [
+interface CoreServicesCarouselProps {
+  navigate: (page: string) => void;
+}
+
+// Custom Background Illustrations for each card
+const OptIllustration = () => (
+  <div className="absolute inset-0 overflow-hidden pointer-events-none">
+     <motion.div 
+        className="absolute top-[-10%] right-[-10%] w-64 h-64 bg-icy-main/10 rounded-full blur-3xl" 
+        animate={{ scale: [1, 1.2, 1], opacity: [0.3, 0.5, 0.3] }}
+        transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+     />
+     <div className="relative w-full h-full opacity-20">
+        <motion.div 
+            className="absolute top-10 right-8"
+            animate={{ rotate: 360 }}
+            transition={{ duration: 60, repeat: Infinity, ease: "linear" }}
+        >
+            <Cpu className="w-32 h-32 text-icy-main rotate-12" />
+        </motion.div>
+        
+        <motion.div 
+            className="absolute bottom-12 left-8"
+            animate={{ y: [0, -15, 0], rotate: [-12, -8, -12] }}
+            transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+        >
+            <Search className="w-24 h-24 text-white" />
+        </motion.div>
+
+        <motion.div 
+            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
+            animate={{ opacity: [0.2, 0.4, 0.2], scale: [1, 1.05, 1] }}
+            transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+        >
+            <Layers className="w-48 h-48 text-icy-secondary" />
+        </motion.div>
+     </div>
+  </div>
+);
+
+const ReachIllustration = () => (
+    <div className="absolute inset-0 overflow-hidden pointer-events-none">
+       <motion.div 
+        className="absolute bottom-[-10%] left-[-10%] w-64 h-64 bg-icy-secondary/10 rounded-full blur-3xl"
+        animate={{ scale: [1, 1.3, 1] }}
+        transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
+       />
+       <div className="relative w-full h-full opacity-20">
+          <motion.div 
+            className="absolute -top-6 -left-6"
+            animate={{ rotate: 360 }}
+            transition={{ duration: 50, repeat: Infinity, ease: "linear" }}
+          >
+            <Globe className="w-40 h-40 text-icy-main" />
+          </motion.div>
+
+          <motion.div 
+            className="absolute bottom-16 right-8"
+            animate={{ scale: [1, 1.1, 1], opacity: [0.8, 1, 0.8] }}
+            transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+          >
+            <Share2 className="w-20 h-20 text-white" />
+          </motion.div>
+
+          <motion.div 
+            className="absolute top-1/2 right-4"
+            animate={{ scale: [0.9, 1.1, 0.9], opacity: [0.3, 0.6, 0.3] }}
+            transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+          >
+            <Radio className="w-28 h-28 text-icy-secondary" />
+          </motion.div>
+          
+          {/* Geometric Circles */}
+          <motion.div 
+            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-56 h-56 border border-white/30 rounded-full"
+            animate={{ scale: [1, 1.1, 1], opacity: [0.3, 0.1, 0.3] }}
+            transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+          />
+          <motion.div 
+            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-80 h-80 border border-white/10 rounded-full"
+            animate={{ scale: [1.1, 1, 1.1], opacity: [0.1, 0.3, 0.1] }}
+            transition={{ duration: 8, repeat: Infinity, ease: "easeInOut", delay: 4 }}
+          />
+       </div>
+    </div>
+);
+
+const GrowthIllustration = () => (
+    <div className="absolute inset-0 overflow-hidden pointer-events-none">
+       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-gradient-to-t from-icy-deep/20 to-transparent" />
+       <div className="relative w-full h-full opacity-20">
+          <motion.div 
+            className="absolute bottom-8 left-4"
+            animate={{ x: [0, 5, 0], y: [0, -5, 0] }}
+            transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+          >
+            <TrendingUp className="w-40 h-40 text-icy-main" />
+          </motion.div>
+
+          <motion.div 
+            className="absolute top-12 right-6"
+            animate={{ y: [0, 10, 0] }}
+            transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+          >
+             <BarChart className="w-24 h-24 text-white" />
+          </motion.div>
+
+          <motion.div 
+            className="absolute top-1/2 left-1/3"
+            animate={{ opacity: [0.4, 0.8, 0.4], scale: [1, 1.2, 1] }}
+            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+          >
+            <Zap className="w-16 h-16 text-yellow-400" />
+          </motion.div>
+
+          {/* Upward lines */}
+          <motion.div 
+            className="absolute bottom-0 left-1/4 w-1 bg-icy-main/50"
+            animate={{ height: ['8rem', '12rem', '8rem'] }}
+            transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+          />
+          <motion.div 
+            className="absolute bottom-0 left-1/2 w-1 bg-icy-main/50" 
+            animate={{ height: ['12rem', '16rem', '12rem'] }}
+            transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+          />
+          <motion.div 
+            className="absolute bottom-0 left-3/4 w-1 bg-icy-main/50"
+            animate={{ height: ['16rem', '20rem', '16rem'] }}
+            transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 2 }}
+          />
+       </div>
+    </div>
+);
+
+const services = [
   {
-    sliderName: 'optimisation',
-    title: 'Optimisation',
+    title: 'Optimization',
     desc: 'Technical foundations for search & app stores.',
-    subFeatures: ['Search Engine Optimzation & Audits', 'AEO (Answer Engine Optimzation)', 'App Store Optimization', 'Local & GBP Visibility'],
-    // Base URL for srcset generation
-    imgBase: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c',
-    link: '/optimisation'
+    subFeatures: ['Technical SEO Audits', 'Answer Engine Optimization', 'App Store Optimization', 'Local Visibility'],
+    navKey: 'optimization',
+    Illustration: OptIllustration
   },
   {
-    sliderName: 'reach',
     title: 'Reach',
     desc: 'Connect with customers on every platform.',
     subFeatures: ['Email & SMS Automation', 'Marketplace Listings', 'Blog Content Engine', 'Backlink Acquisition'],
-    imgBase: 'https://images.unsplash.com/photo-1557200134-90327ee9fafa',
-    link: '/reach'
+    navKey: 'reach',
+    Illustration: ReachIllustration
   },
   {
-    sliderName: 'growth',
     title: 'Growth',
     desc: 'Scale into new markets and communities.',
     subFeatures: ['Social Media Management', 'Multilingual Expansion', 'Viral Short-Form Video', 'Community Engagement'],
-    imgBase: 'https://images.unsplash.com/photo-1526778548025-fa2f459cd5c1',
-    link: '/growth'
+    navKey: 'growth',
+    Illustration: GrowthIllustration
   },
 ];
 
-const CoreServicesCarousel: React.FC = () => {
+const CoreServicesCarousel: React.FC<CoreServicesCarouselProps> = ({ navigate }) => {
   return (
-    <section id="services" className="py-24 px-4 bg-black/20">
-      <div className="w-[90%] lg:w-[90%] mx-auto">
+    <section id="services" className="py-24 px-4 bg-icy-dark relative overflow-hidden">
+      {/* Ambient background glow */}
+      <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-icy-main/10 rounded-full blur-[100px] pointer-events-none" />
+      <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-icy-secondary/10 rounded-full blur-[100px] pointer-events-none" />
+
+      <div className="container mx-auto px-4 relative z-10">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold mb-6 text-white">Our Core Services</h2>
-          <p className="text-gray-400 max-w-2xl mx-auto">
+          <h2 className="text-4xl md:text-5xl font-bold mb-6 text-white font-sans tracking-tight">Our Core Services</h2>
+          <p className="text-gray-400 max-w-2xl mx-auto font-body text-lg">
             A holistic suite of digital tools designed for the modern business.
             Select a pillar to explore capabilities.
           </p>
         </div>
 
-        <div className="w-full">
-          <ProgressSlider vertical={false} activeSlider='optimisation' className="w-full">
-            <SliderContent className="w-full">
-              {carouselItems.map((item, index) => (
-                <SliderWrapper key={index} value={item.sliderName} className="w-full">
-                  <div className="relative h-[500px] md:h-[600px] w-full rounded-[2.5rem] overflow-hidden shadow-2xl group border border-white/10">
-                    {/* PERFORMANCE OPTIMIZATION: Responsive images with srcset
-                        Loads appropriate image size based on viewport width
-                        Reduces image size by ~60-70% on mobile/tablet
-                        WebP format support for ~25-35% additional compression */}
-                    <img
-                      className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105 opacity-60 dark:opacity-40"
-                      srcSet={`
-                        ${item.imgBase}?q=80&w=640&auto=format&fit=crop&fm=webp 640w,
-                        ${item.imgBase}?q=80&w=1024&auto=format&fit=crop&fm=webp 1024w,
-                        ${item.imgBase}?q=80&w=1920&auto=format&fit=crop&fm=webp 1920w,
-                        ${item.imgBase}?q=80&w=640&auto=format&fit=crop 640w,
-                        ${item.imgBase}?q=80&w=1024&auto=format&fit=crop 1024w,
-                        ${item.imgBase}?q=80&w=1920&auto=format&fit=crop 1920w
-                      `}
-                      sizes="(max-width: 640px) 640px, (max-width: 1024px) 1024px, 1920px"
-                      src={`${item.imgBase}?q=80&w=1024&auto=format&fit=crop`}
-                      alt={item.title}
-                      loading="lazy"
-                      width={1920}
-                      height={1080}
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent" />
-                    
-                    <div className="absolute inset-0 flex flex-col justify-center px-8 md:px-16 lg:px-24 pb-24 md:pb-0">
-                        <div className="max-w-2xl">
-                            <h3 className="text-3xl md:text-5xl font-bold text-white mb-6 tracking-tight">
-                                {item.title}
-                            </h3>
-                            <p className="text-lg md:text-xl text-gray-200 mb-8 leading-relaxed">
-                                {item.desc}
-                            </p>
-                            
-                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-10">
-                                {item.subFeatures.map((feat, i) => (
-                                    <div key={i} className="flex items-center gap-3 text-white/90">
-                                        <div className="p-1 rounded-full bg-icy-main/20 text-icy-main">
-                                            <CheckCircle2 size={16} />
-                                        </div>
-                                        <span className="font-medium">{feat}</span>
-                                    </div>
-                                ))}
-                            </div>
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          {services.map((item, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+              className="group relative bg-slate-900/40 backdrop-blur-xl border border-white/10 rounded-[2rem] overflow-hidden shadow-2xl hover:shadow-icy-main/20 hover:border-white/20 transition-all duration-500 flex flex-col"
+            >
+              {/* Background Illustration */}
+              <item.Illustration />
+              
+              {/* Gradient Overlay for Text Readability */}
+              <div className="absolute inset-0 bg-gradient-to-t from-icy-dark via-icy-dark/50 to-transparent pointer-events-none" />
 
-                            <Link 
-                                to={item.link}
-                                className="inline-flex items-center gap-2 px-6 py-3 bg-icy-main hover:bg-icy-secondary text-white rounded-full font-bold transition-all hover:scale-105 shadow-lg shadow-icy-main/25"
-                            >
-                                Explore {item.title} <ArrowRight size={18} />
-                            </Link>
-                        </div>
-                    </div>
-                  </div>
-                </SliderWrapper>
-              ))}
-            </SliderContent>
-
-            <SliderBtnGroup className="absolute bottom-6 left-1/2 -translate-x-1/2 w-[95%] md:w-[80%] h-auto bg-black/80 backdrop-blur-2xl border border-white/20 overflow-hidden grid grid-cols-3 rounded-full shadow-2xl p-1 gap-1">
-              {carouselItems.map((item, index) => (
-                <SliderBtn
-                  key={index}
-                  value={item.sliderName}
-                  className="text-center cursor-pointer py-3 md:py-4 rounded-full hover:bg-black/5 dark:hover:bg-white/10 transition-colors flex flex-col items-center justify-center gap-1"
-                  progressBarClass="bg-icy-main h-2 absolute inset-0 z-[-1] opacity-80 rounded-full"
-                >
-                  <h2 className="text-sm md:text-base font-bold text-white">
+              {/* Content */}
+              <div className="relative z-10 p-8 flex flex-col h-full">
+                <div className="mb-6">
+                  <h3 className="text-3xl font-bold text-white mb-3 font-sans group-hover:text-icy-main transition-colors duration-300">
                     {item.title}
-                  </h2>
-                </SliderBtn>
-              ))}
-            </SliderBtnGroup>
-          </ProgressSlider>
+                  </h3>
+                  <p className="text-gray-300 font-body leading-relaxed min-h-[3rem]">
+                    {item.desc}
+                  </p>
+                </div>
+
+                <div className="space-y-3 mb-8 flex-grow">
+                  {item.subFeatures.map((feat, i) => (
+                    <div key={i} className="flex items-start gap-3 text-sm text-gray-300">
+                      <CheckCircle2 className="w-5 h-5 text-icy-main shrink-0 mt-0.5" />
+                      <span className="font-body">{feat}</span>
+                    </div>
+                  ))}
+                </div>
+
+                <div className="mt-auto">
+                  <button
+                    onClick={(e) => { e.preventDefault(); navigate(item.navKey); }}
+                    className="w-full py-4 bg-white/5 hover:bg-icy-main border border-white/10 hover:border-transparent rounded-xl text-white font-bold transition-all duration-300 flex items-center justify-center gap-2 group/btn font-sans"
+                  >
+                    Explore {item.title}
+                    <ArrowRight className="w-5 h-5 group-hover/btn:translate-x-1 transition-transform" />
+                  </button>
+                </div>
+              </div>
+            </motion.div>
+          ))}
         </div>
       </div>
     </section>

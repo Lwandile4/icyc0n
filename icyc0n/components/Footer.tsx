@@ -65,7 +65,7 @@ const Footer: React.FC = () => {
 
         {/* Social Media Links */}
         <div className="relative pt-4 border-t border-white/10 flex justify-center md:justify-start items-center gap-6 overflow-hidden">
-          <div className="flex gap-8">
+          <div className="flex gap-8 pb-4">
             <a 
               href="https://twitter.com/icycon" 
               target="_blank" 
